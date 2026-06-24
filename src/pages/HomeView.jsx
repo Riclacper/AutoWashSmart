@@ -10,6 +10,13 @@ const homeTiles = [
   ['Contato', 'Fluxo pronto para apresentacao comercial sem depender de integracoes externas.'],
 ];
 
+const demoSteps = [
+  ['1', 'Cadastrar cliente', 'Registre cliente, autorizados e veiculo.'],
+  ['2', 'Liberar no totem', 'Use AWS2026, QR Code ou facial.'],
+  ['3', 'Executar lavagem', 'Escolha o servico e acompanhe etapas.'],
+  ['4', 'Conferir painel', 'Veja receita, vendas e atividades.'],
+];
+
 export function HomeView() {
   const navigate = useNavigate();
 
@@ -56,6 +63,21 @@ export function HomeView() {
             <p>{text}</p>
           </article>
         ))}
+      </div>
+      <div className="demo-flow">
+        <div className="screen-heading">
+          <span className="eyebrow">Roteiro de demonstracao</span>
+          <h2>Fluxo pronto para apresentar</h2>
+        </div>
+        <div className="demo-step-grid">
+          {demoSteps.map(([number, title, text]) => (
+            <article className="demo-step" key={title}>
+              <span>{number}</span>
+              <h3>{title}</h3>
+              <p>{text}</p>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );

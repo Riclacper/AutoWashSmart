@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { Sidebar } from './components/Sidebar.jsx';
-import { demoCustomer, serviceOptions } from './data/catalog.js';
+import { demoCustomer, demoState, serviceOptions } from './data/catalog.js';
 import { AdminView } from './pages/AdminView.jsx';
 import { ClientView } from './pages/ClientView.jsx';
 import { HomeView } from './pages/HomeView.jsx';
@@ -10,6 +10,12 @@ import { ShopView } from './pages/ShopView.jsx';
 import { TotemView } from './pages/TotemView.jsx';
 import { WashView } from './pages/WashView.jsx';
 import { loadState, saveState } from './services/storage.js';
+
+const dayLabels = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'];
+
+function getDayLabel(date = new Date()) {
+  return dayLabels[date.getDay()];
+}
 
 function App() {
   const [state, setState] = useState(loadState);
@@ -98,6 +104,8 @@ function App() {
             price: selectedService.price,
             entry: entry.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),
             exit: exit.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),
+            day: getDayLabel(entry),
+            createdAt: exit.getTime(),
           };
           setCheckout(wash);
           setIsWashing(false);
@@ -109,8 +117,23 @@ function App() {
   }
 
   function buyProduct(product) {
-    const sale = { ...product, id: crypto.randomUUID(), time: new Date().toLocaleTimeString('pt-BR') };
+    const now = new Date();
+    const sale = {
+      ...product,
+      id: crypto.randomUUID(),
+      time: now.toLocaleTimeString('pt-BR'),
+      day: getDayLabel(now),
+      createdAt: now.getTime(),
+    };
     setState((current) => ({ ...current, sales: [sale, ...current.sales] }));
+  }
+
+  function resetDemoData() {
+    setIdentified(null);
+    setCheckout(null);
+    setWashProgress(0);
+    setIsWashing(false);
+    setState(JSON.parse(JSON.stringify(demoState)));
   }
 
   return (
@@ -158,7 +181,7 @@ function App() {
               }
             />
             <Route path="/shop" element={<ShopView buyProduct={buyProduct} latestSale={state.sales[0]} />} />
-            <Route path="/dashboard" element={<AdminView metrics={metrics} state={state} />} />
+            <Route path="/dashboard" element={<AdminView metrics={metrics} state={state} resetDemoData={resetDemoData} />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>

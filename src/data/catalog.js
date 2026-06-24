@@ -18,12 +18,58 @@ export const products = [
 export function demoCustomer() {
   return {
     id: 'demo',
-    name: 'Cliente Demo',
-    cpf: '000.000.000-00',
-    email: 'demo@autowash.local',
+    name: 'Marina Costa',
+    cpf: '123.456.789-10',
+    email: 'marina@autowash.local',
     phone: '(81) 99999-0000',
     plan: 'Smart Plus',
-    authorized: [{ name: 'Familiar autorizado', relation: 'Familia' }],
+    authorized: [{ name: 'Rafael Costa', relation: 'Familia' }],
     vehicles: [{ plate: 'AWS2026', brand: 'Toyota', model: 'Corolla', color: 'Prata', category: 'Sedan' }],
   };
 }
+
+export const demoState = {
+  customers: [
+    demoCustomer(),
+    {
+      id: 'demo-fleet',
+      name: 'Recife Prime Rent',
+      cpf: '12.345.678/0001-90',
+      email: 'operacao@recifeprime.local',
+      phone: '(81) 3333-2026',
+      plan: 'Frota',
+      authorized: [
+        { name: 'Lucas Menezes', relation: 'Gestor' },
+        { name: 'Ana Barros', relation: 'Operacao' },
+      ],
+      vehicles: [
+        { plate: 'RPR4E22', brand: 'Jeep', model: 'Compass', color: 'Preto', category: 'SUV' },
+        { plate: 'RPR8A10', brand: 'Fiat', model: 'Toro', color: 'Branco', category: 'Pick-up' },
+      ],
+    },
+    {
+      id: 'demo-premium',
+      name: 'Bruno Almeida',
+      cpf: '987.654.321-00',
+      email: 'bruno@autowash.local',
+      phone: '(81) 98888-1010',
+      plan: 'Avulso',
+      authorized: [],
+      vehicles: [{ plate: 'BRA1D45', brand: 'Honda', model: 'Civic', color: 'Cinza', category: 'Sedan' }],
+    },
+  ],
+  washes: [
+    { id: 'wash-001', service: 'Premium', price: 69.9, entry: '08:12', exit: '08:34', day: 'Seg', createdAt: 1001 },
+    { id: 'wash-002', service: 'Express', price: 39.9, entry: '09:05', exit: '09:18', day: 'Seg', createdAt: 1002 },
+    { id: 'wash-003', service: 'SUV Care', price: 89.9, entry: '10:20', exit: '10:47', day: 'Ter', createdAt: 1003 },
+    { id: 'wash-004', service: 'Premium', price: 69.9, entry: '13:14', exit: '13:36', day: 'Qua', createdAt: 1004 },
+    { id: 'wash-005', service: 'Express', price: 39.9, entry: '15:02', exit: '15:15', day: 'Qui', createdAt: 1005 },
+    { id: 'wash-006', service: 'SUV Care', price: 89.9, entry: '16:40', exit: '17:06', day: 'Sex', createdAt: 1006 },
+  ],
+  sales: [
+    { id: 'sale-001', name: 'Microfibra', price: 14.9, time: '08:36', day: 'Seg', createdAt: 1007 },
+    { id: 'sale-002', name: 'Cera', price: 24.9, time: '10:51', day: 'Ter', createdAt: 1008 },
+    { id: 'sale-003', name: 'Aromatizador', price: 12.9, time: '13:39', day: 'Qua', createdAt: 1009 },
+    { id: 'sale-004', name: 'Limpa vidro', price: 16.9, time: '17:10', day: 'Sex', createdAt: 1010 },
+  ],
+};

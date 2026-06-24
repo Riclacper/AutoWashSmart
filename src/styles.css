@@ -277,6 +277,13 @@ button:disabled:hover {
   background: var(--green-soft);
 }
 
+.compact-action {
+  min-height: 38px;
+  margin: 10px 0 0;
+  padding: 0 14px;
+  font-size: 14px;
+}
+
 .hero-panel {
   display: grid;
   align-content: center;
@@ -323,6 +330,7 @@ button:disabled:hover {
 }
 
 .section-grid,
+.demo-step-grid,
 .metric-grid,
 .product-grid,
 .chart-grid,
@@ -336,7 +344,16 @@ button:disabled:hover {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
+.demo-flow {
+  margin-top: 8px;
+}
+
+.demo-step-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
 .info-tile,
+.demo-step,
 .side-panel,
 .form-panel,
 .totem-device,
@@ -359,6 +376,7 @@ button:disabled:hover {
 }
 
 .info-tile:hover,
+.demo-step:hover,
 .service-option:hover,
 .product-card:hover,
 .metric-card:hover,
@@ -368,12 +386,36 @@ button:disabled:hover {
 }
 
 .info-tile p,
+.demo-step p,
 .screen-heading p,
 .customer-card small,
 .field span,
 .product-card strong,
 .metric-card span {
   color: var(--muted);
+}
+
+.demo-step {
+  display: grid;
+  gap: 8px;
+  padding: 20px;
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
+}
+
+.demo-step > span {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  color: #062316;
+  background: var(--green);
+  font-weight: 900;
+}
+
+.demo-step h3,
+.demo-step p {
+  margin-bottom: 0;
 }
 
 .split-screen {
@@ -818,8 +860,24 @@ button:disabled:hover {
 }
 
 .recent-list p {
-  margin-bottom: 8px;
-  color: #627482;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+  color: var(--muted);
+}
+
+.recent-list p:last-child {
+  margin-bottom: 0;
+}
+
+.recent-list strong {
+  color: var(--ink);
+}
+
+.recent-list span {
+  color: var(--muted);
+  text-align: right;
 }
 
 @media (max-width: 980px) {
@@ -870,6 +928,7 @@ button:disabled:hover {
   }
 
   .section-grid,
+  .demo-step-grid,
   .metric-grid,
   .chart-grid,
   .product-grid {
@@ -884,6 +943,7 @@ button:disabled:hover {
 @media (max-width: 640px) {
   .sidebar nav,
   .section-grid,
+  .demo-step-grid,
   .metric-grid,
   .chart-grid,
   .product-grid,

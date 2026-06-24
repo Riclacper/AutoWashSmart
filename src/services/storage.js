@@ -1,3 +1,5 @@
+import { demoState } from '../data/catalog.js';
+
 const storageKey = 'autowash-smart-state';
 
 export const initialState = {
@@ -9,9 +11,12 @@ export const initialState = {
 export function loadState() {
   try {
     const saved = localStorage.getItem(storageKey);
-    return saved ? { ...initialState, ...JSON.parse(saved) } : initialState;
+    if (!saved) return demoState;
+    const parsed = { ...initialState, ...JSON.parse(saved) };
+    const hasOperationalData = parsed.customers.length || parsed.washes.length || parsed.sales.length;
+    return hasOperationalData ? parsed : demoState;
   } catch {
-    return initialState;
+    return demoState;
   }
 }
 
