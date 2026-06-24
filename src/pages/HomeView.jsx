@@ -31,10 +31,10 @@ export function HomeView() {
             lavagem guiada, cobranca simulada, self-service e mini shop.
           </p>
           <div className="hero-actions">
-            <button className="primary-action" onClick={() => navigate('/totem')}>
+            <button className="primary-action" onClick={() => navigate('/app/totem')}>
               Simular entrada <ChevronRight size={18} />
             </button>
-            <button className="secondary-action" onClick={() => navigate('/cliente')}>
+            <button className="secondary-action" onClick={() => navigate('/app/cliente')}>
               Cadastrar cliente
             </button>
           </div>

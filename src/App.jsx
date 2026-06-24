@@ -5,6 +5,7 @@ import { demoCustomer, demoState, serviceOptions } from './data/catalog.js';
 import { AdminView } from './pages/AdminView.jsx';
 import { ClientView } from './pages/ClientView.jsx';
 import { HomeView } from './pages/HomeView.jsx';
+import { LandingView } from './pages/LandingView.jsx';
 import { SelfServiceView } from './pages/SelfServiceView.jsx';
 import { ShopView } from './pages/ShopView.jsx';
 import { TotemView } from './pages/TotemView.jsx';
@@ -136,56 +137,64 @@ function App() {
     setState(JSON.parse(JSON.stringify(demoState)));
   }
 
+  const platformRoutes = (
+    <div className="app-shell">
+      <Sidebar />
+      <main className="workspace">
+        <Routes>
+          <Route index element={<HomeView />} />
+          <Route path="cliente" element={<ClientView state={state} addCustomer={addCustomer} />} />
+          <Route
+            path="totem"
+            element={
+              <TotemView
+                identified={identified}
+                findByPlate={findByPlate}
+                simulateIdentification={simulateIdentification}
+              />
+            }
+          />
+          <Route
+            path="lavagem"
+            element={
+              <WashView
+                selectedService={selectedService}
+                setSelectedService={setSelectedService}
+                washProgress={washProgress}
+                isWashing={isWashing}
+                startWash={startWash}
+                checkout={checkout}
+              />
+            }
+          />
+          <Route
+            path="self-service"
+            element={
+              <SelfServiceView
+                selfMinutes={selfMinutes}
+                setSelfMinutes={setSelfMinutes}
+                selfRemaining={selfRemaining}
+                setSelfRemaining={setSelfRemaining}
+                selfActive={selfActive}
+                setSelfActive={setSelfActive}
+              />
+            }
+          />
+          <Route path="shop" element={<ShopView buyProduct={buyProduct} latestSale={state.sales[0]} />} />
+          <Route path="dashboard" element={<AdminView metrics={metrics} state={state} resetDemoData={resetDemoData} />} />
+          <Route path="*" element={<Navigate to="/app" replace />} />
+        </Routes>
+      </main>
+    </div>
+  );
+
   return (
     <HashRouter>
-      <div className="app-shell">
-        <Sidebar />
-        <main className="workspace">
-          <Routes>
-            <Route path="/" element={<HomeView />} />
-            <Route path="/cliente" element={<ClientView state={state} addCustomer={addCustomer} />} />
-            <Route
-              path="/totem"
-              element={
-                <TotemView
-                  identified={identified}
-                  findByPlate={findByPlate}
-                  simulateIdentification={simulateIdentification}
-                />
-              }
-            />
-            <Route
-              path="/lavagem"
-              element={
-                <WashView
-                  selectedService={selectedService}
-                  setSelectedService={setSelectedService}
-                  washProgress={washProgress}
-                  isWashing={isWashing}
-                  startWash={startWash}
-                  checkout={checkout}
-                />
-              }
-            />
-            <Route
-              path="/self-service"
-              element={
-                <SelfServiceView
-                  selfMinutes={selfMinutes}
-                  setSelfMinutes={setSelfMinutes}
-                  selfRemaining={selfRemaining}
-                  setSelfRemaining={setSelfRemaining}
-                  selfActive={selfActive}
-                  setSelfActive={setSelfActive}
-                />
-              }
-            />
-            <Route path="/shop" element={<ShopView buyProduct={buyProduct} latestSale={state.sales[0]} />} />
-            <Route path="/dashboard" element={<AdminView metrics={metrics} state={state} resetDemoData={resetDemoData} />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-        </main>
-      </div>
+      <Routes>
+        <Route path="/" element={<LandingView />} />
+        <Route path="/app/*" element={platformRoutes} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
     </HashRouter>
   );
 }

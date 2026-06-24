@@ -11,19 +11,19 @@ import {
 } from 'lucide-react';
 
 const items = [
-  ['/', Home, 'Home'],
-  ['/cliente', UserRound, 'Cliente'],
-  ['/totem', ScanFace, 'Totem'],
-  ['/lavagem', Waves, 'Lavagem'],
-  ['/self-service', Gauge, 'Self-service'],
-  ['/shop', ShoppingBag, 'Shop'],
-  ['/dashboard', BarChart3, 'Admin'],
+  ['/app', Home, 'Home'],
+  ['/app/cliente', UserRound, 'Cliente'],
+  ['/app/totem', ScanFace, 'Totem'],
+  ['/app/lavagem', Waves, 'Lavagem'],
+  ['/app/self-service', Gauge, 'Self-service'],
+  ['/app/shop', ShoppingBag, 'Shop'],
+  ['/app/dashboard', BarChart3, 'Admin'],
 ];
 
 export function Sidebar() {
   return (
     <aside className="sidebar">
-      <NavLink className="brand" to="/" aria-label="AutoWash Smart">
+      <NavLink className="brand" to="/app" aria-label="AutoWash Smart">
         <span className="brand-icon"><Droplets size={24} /></span>
         <span>
           <strong>AutoWash</strong>
@@ -35,6 +35,7 @@ export function Sidebar() {
           <NavLink
             key={path}
             className={({ isActive }) => (isActive ? 'nav-item active' : 'nav-item')}
+            end={path === '/app'}
             to={path}
             title={label}
           >
