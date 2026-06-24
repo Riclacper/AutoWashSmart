@@ -16,6 +16,7 @@ function App() {
   const [selectedService, setSelectedService] = useState(serviceOptions[0]);
   const [identified, setIdentified] = useState(null);
   const [washProgress, setWashProgress] = useState(0);
+  const [isWashing, setIsWashing] = useState(false);
   const [selfMinutes, setSelfMinutes] = useState(10);
   const [selfRemaining, setSelfRemaining] = useState(600);
   const [selfActive, setSelfActive] = useState(false);
@@ -61,7 +62,8 @@ function App() {
 
   function findByPlate(plate) {
     const cleanPlate = plate.trim().toUpperCase();
-    const customer = state.customers.find((item) =>
+    const customers = state.customers.length ? state.customers : [demoCustomer()];
+    const customer = customers.find((item) =>
       item.vehicles.some((vehicle) => vehicle.plate.toUpperCase() === cleanPlate)
     );
     if (!customer) {
@@ -79,7 +81,9 @@ function App() {
   }
 
   function startWash() {
+    if (isWashing) return;
     const entry = new Date();
+    setIsWashing(true);
     setWashProgress(0);
     setCheckout(null);
     const id = window.setInterval(() => {
@@ -96,6 +100,7 @@ function App() {
             exit: exit.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),
           };
           setCheckout(wash);
+          setIsWashing(false);
           setState((current) => ({ ...current, washes: [wash, ...current.washes] }));
         }
         return next;
@@ -133,6 +138,7 @@ function App() {
                   selectedService={selectedService}
                   setSelectedService={setSelectedService}
                   washProgress={washProgress}
+                  isWashing={isWashing}
                   startWash={startWash}
                   checkout={checkout}
                 />

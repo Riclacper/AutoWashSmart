@@ -1,7 +1,7 @@
 import { Car, CreditCard } from 'lucide-react';
 import { serviceOptions, washSteps } from '../data/catalog.js';
 
-export function WashView({ selectedService, setSelectedService, washProgress, startWash, checkout }) {
+export function WashView({ selectedService, setSelectedService, washProgress, isWashing, startWash, checkout }) {
   const activeStep = Math.min(Math.floor(washProgress / 20), washSteps.length - 1);
 
   return (
@@ -16,6 +16,7 @@ export function WashView({ selectedService, setSelectedService, washProgress, st
             key={service.name}
             className={selectedService.name === service.name ? 'service-option selected' : 'service-option'}
             onClick={() => setSelectedService(service)}
+            disabled={isWashing}
           >
             <strong>{service.name}</strong>
             <span>R$ {service.price.toFixed(2)}</span>
@@ -40,7 +41,9 @@ export function WashView({ selectedService, setSelectedService, washProgress, st
             </div>
           ))}
         </div>
-        <button className="primary-action" onClick={startWash}>Iniciar lavagem</button>
+        <button className="primary-action" onClick={startWash} disabled={isWashing}>
+          {isWashing ? 'Lavagem em andamento' : 'Iniciar lavagem'}
+        </button>
       </div>
       {checkout && <CheckoutPanel checkout={checkout} />}
     </section>

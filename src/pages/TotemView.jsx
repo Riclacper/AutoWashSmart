@@ -6,6 +6,11 @@ export function TotemView({ identified, findByPlate, simulateIdentification }) {
   const [plate, setPlate] = useState('');
   const navigate = useNavigate();
 
+  function submitPlate(event) {
+    event.preventDefault();
+    findByPlate(plate);
+  }
+
   return (
     <section className="screen totem-screen">
       <div className="screen-heading centered">
@@ -14,15 +19,15 @@ export function TotemView({ identified, findByPlate, simulateIdentification }) {
       </div>
       <div className="totem-device">
         <div className="totem-camera"><ScanFace size={58} /></div>
-        <div className="plate-search">
+        <form className="plate-search" onSubmit={submitPlate}>
           <input
             value={plate}
             onChange={(event) => setPlate(event.target.value)}
             placeholder="Digite a placa"
             aria-label="Digite a placa"
           />
-          <button onClick={() => findByPlate(plate)}>Buscar</button>
-        </div>
+          <button type="submit">Buscar</button>
+        </form>
         <div className="totem-actions">
           <button onClick={() => simulateIdentification('QR Code')}><QrCode size={18} /> QR Code</button>
           <button onClick={() => simulateIdentification('Facial')}><ScanFace size={18} /> Facial</button>
@@ -45,7 +50,7 @@ export function TotemView({ identified, findByPlate, simulateIdentification }) {
             <>
               <Clock size={34} />
               <h3>Aguardando identificacao</h3>
-              <p>Use uma placa cadastrada ou acione uma simulacao.</p>
+              <p>Use a placa AWS2026, uma placa cadastrada ou acione uma simulacao.</p>
             </>
           )}
         </div>
