@@ -44,7 +44,7 @@ export function TotemView({ identified, findByPlate, simulateIdentification }) {
                 <span>Plano ativo</span>
                 <span>{identified.method}</span>
               </div>
-              <button className="primary-action" onClick={() => navigate('/app/lavagem')}>Ir para lavagem</button>
+              <button className="primary-action" onClick={() => navigate('/app/admin/lavagem')}>Ir para lavagem</button>
             </>
           ) : (
             <>

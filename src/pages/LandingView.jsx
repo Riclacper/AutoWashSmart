@@ -67,7 +67,7 @@ export function LandingView() {
             <button className="primary-action" onClick={() => navigate('/app')}>
               Acessar demonstracao <ArrowRight size={18} />
             </button>
-            <button className="secondary-action" onClick={() => navigate('/app/dashboard')}>
+            <button className="secondary-action" onClick={() => navigate('/app/admin/dashboard')}>
               Ver indicadores
             </button>
           </div>
@@ -133,7 +133,7 @@ export function LandingView() {
           <h2>Pronto para explorar o MVP.</h2>
           <p>Entre na plataforma com dados demo e percorra o fluxo completo.</p>
         </div>
-        <button className="primary-action" onClick={() => navigate('/app/totem')}>
+        <button className="primary-action" onClick={() => navigate('/app/admin/totem')}>
           Comecar pelo totem <Sparkles size={18} />
         </button>
       </section>

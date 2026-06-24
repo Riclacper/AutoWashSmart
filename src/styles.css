@@ -64,6 +64,101 @@ a {
   min-height: 100vh;
 }
 
+.access-page {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  padding: 32px;
+  background:
+    radial-gradient(circle at 82% 20%, rgba(18, 201, 135, 0.14), transparent 28%),
+    linear-gradient(135deg, var(--navy), #142b3d);
+}
+
+.access-panel {
+  width: min(920px, 100%);
+}
+
+.access-panel .screen-heading h1 {
+  color: #ffffff;
+  font-size: 46px;
+}
+
+.access-panel .screen-heading p {
+  color: #d8e6ec;
+}
+
+.access-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.access-card {
+  display: grid;
+  gap: 12px;
+  min-height: 280px;
+  padding: 26px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 8px;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: var(--shadow-md);
+  text-align: left;
+  transition: transform 0.16s ease, background 0.16s ease;
+}
+
+.access-card:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.access-card > span {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 8px;
+  color: var(--green);
+  background: rgba(18, 201, 135, 0.12);
+}
+
+.access-card h2 {
+  color: #ffffff;
+}
+
+.access-card p {
+  color: #d8e6ec;
+}
+
+.access-card strong {
+  color: var(--green);
+}
+
+.admin-access > span {
+  color: var(--amber);
+  background: rgba(242, 184, 75, 0.13);
+}
+
+.access-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.access-summary span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 38px;
+  padding: 0 12px;
+  border-radius: 999px;
+  color: #d8e6ec;
+  background: rgba(255, 255, 255, 0.1);
+  font-size: 14px;
+  font-weight: 800;
+}
+
 .landing-page {
   min-height: 100vh;
   background: #f4f8fa;
@@ -370,6 +465,25 @@ a {
 .sidebar nav {
   display: grid;
   gap: 8px;
+}
+
+.mode-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  margin: -12px 0 18px;
+  padding: 0 10px;
+  border-radius: 8px;
+  color: #a9bfca;
+  background: rgba(255, 255, 255, 0.07);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.mode-switch:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .nav-item {
@@ -1134,7 +1248,139 @@ button:disabled:hover {
   text-align: right;
 }
 
+.client-portal {
+  display: grid;
+  gap: 18px;
+}
+
+.client-hero-card,
+.client-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.client-hero-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 220px;
+  gap: 18px;
+  align-items: center;
+  padding: 24px;
+}
+
+.client-avatar,
+.client-plan {
+  display: grid;
+  place-items: center;
+}
+
+.client-avatar {
+  width: 52px;
+  height: 52px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  color: var(--green-2);
+  background: var(--green-soft);
+}
+
+.client-plan {
+  gap: 6px;
+  min-height: 140px;
+  border-radius: 8px;
+  color: #07583d;
+  background: var(--green-soft);
+  text-align: center;
+}
+
+.client-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.client-card {
+  display: grid;
+  gap: 10px;
+  padding: 20px;
+}
+
+.client-card svg {
+  color: var(--green-2);
+}
+
+.client-card p {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 0;
+  color: var(--muted);
+}
+
+.client-card strong {
+  color: var(--ink);
+}
+
+.qr-card {
+  align-content: start;
+}
+
+.fake-qr {
+  width: 104px;
+  height: 104px;
+  border: 8px solid var(--ink);
+  border-radius: 8px;
+  background:
+    linear-gradient(90deg, var(--ink) 12px, transparent 12px) 0 0 / 24px 24px,
+    linear-gradient(var(--ink) 12px, transparent 12px) 0 0 / 24px 24px,
+    #ffffff;
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.profile-card {
+  display: grid;
+  gap: 10px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.profile-card svg {
+  color: var(--green-2);
+}
+
+.profile-card p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 0;
+  color: var(--muted);
+}
+
+.vehicle-profile p {
+  justify-content: space-between;
+}
+
+.vehicle-profile strong {
+  color: var(--ink);
+}
+
 @media (max-width: 980px) {
+  .access-grid,
+  .client-hero-card,
+  .client-grid,
+  .profile-grid {
+    grid-template-columns: 1fr;
+  }
+
   .landing-hero {
     min-height: auto;
   }

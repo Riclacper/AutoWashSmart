@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import {
   BarChart3,
+  ClipboardList,
   Droplets,
   Gauge,
   Home,
@@ -10,32 +11,45 @@ import {
   Waves,
 } from 'lucide-react';
 
-const items = [
-  ['/app', Home, 'Home'],
-  ['/app/cliente', UserRound, 'Cliente'],
-  ['/app/totem', ScanFace, 'Totem'],
-  ['/app/lavagem', Waves, 'Lavagem'],
-  ['/app/self-service', Gauge, 'Self-service'],
-  ['/app/shop', ShoppingBag, 'Shop'],
-  ['/app/dashboard', BarChart3, 'Admin'],
-];
+const navItems = {
+  client: [
+    ['/app/cliente/portal', Home, 'Inicio'],
+    ['/app/cliente/dados', UserRound, 'Meu cadastro'],
+    ['/app/cliente/shop', ShoppingBag, 'Compras'],
+  ],
+  admin: [
+    ['/app/admin', Home, 'Home'],
+    ['/app/admin/clientes', UserRound, 'Clientes'],
+    ['/app/admin/totem', ScanFace, 'Totem'],
+    ['/app/admin/lavagem', Waves, 'Lavagem'],
+    ['/app/admin/self-service', Gauge, 'Self-service'],
+    ['/app/admin/shop', ShoppingBag, 'Shop'],
+    ['/app/admin/dashboard', BarChart3, 'Dashboard'],
+  ],
+};
 
-export function Sidebar() {
+export function Sidebar({ mode }) {
+  const items = navItems[mode] || navItems.admin;
+
   return (
     <aside className="sidebar">
       <NavLink className="brand" to="/app" aria-label="AutoWash Smart">
         <span className="brand-icon"><Droplets size={24} /></span>
         <span>
           <strong>AutoWash</strong>
-          <small>Lave, pague e siga.</small>
+          <small>{mode === 'client' ? 'Portal do cliente' : 'Operacao admin'}</small>
         </span>
+      </NavLink>
+      <NavLink className="mode-switch" to="/app">
+        <ClipboardList size={16} />
+        Trocar perfil
       </NavLink>
       <nav>
         {items.map(([path, Icon, label]) => (
           <NavLink
             key={path}
             className={({ isActive }) => (isActive ? 'nav-item active' : 'nav-item')}
-            end={path === '/app'}
+            end
             to={path}
             title={label}
           >

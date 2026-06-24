@@ -3,6 +3,9 @@ import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { Sidebar } from './components/Sidebar.jsx';
 import { demoCustomer, demoState, serviceOptions } from './data/catalog.js';
 import { AdminView } from './pages/AdminView.jsx';
+import { AccessView } from './pages/AccessView.jsx';
+import { ClientProfileView } from './pages/ClientProfileView.jsx';
+import { ClientPortalView } from './pages/ClientPortalView.jsx';
 import { ClientView } from './pages/ClientView.jsx';
 import { HomeView } from './pages/HomeView.jsx';
 import { LandingView } from './pages/LandingView.jsx';
@@ -137,13 +140,28 @@ function App() {
     setState(JSON.parse(JSON.stringify(demoState)));
   }
 
-  const platformRoutes = (
+  const clientRoutes = (
     <div className="app-shell">
-      <Sidebar />
+      <Sidebar mode="client" />
+      <main className="workspace">
+        <Routes>
+          <Route index element={<Navigate to="portal" replace />} />
+          <Route path="portal" element={<ClientPortalView state={state} />} />
+          <Route path="dados" element={<ClientProfileView state={state} />} />
+          <Route path="shop" element={<ShopView buyProduct={buyProduct} latestSale={state.sales[0]} />} />
+          <Route path="*" element={<Navigate to="/app/cliente/portal" replace />} />
+        </Routes>
+      </main>
+    </div>
+  );
+
+  const adminRoutes = (
+    <div className="app-shell">
+      <Sidebar mode="admin" />
       <main className="workspace">
         <Routes>
           <Route index element={<HomeView />} />
-          <Route path="cliente" element={<ClientView state={state} addCustomer={addCustomer} />} />
+          <Route path="clientes" element={<ClientView state={state} addCustomer={addCustomer} />} />
           <Route
             path="totem"
             element={
@@ -182,7 +200,7 @@ function App() {
           />
           <Route path="shop" element={<ShopView buyProduct={buyProduct} latestSale={state.sales[0]} />} />
           <Route path="dashboard" element={<AdminView metrics={metrics} state={state} resetDemoData={resetDemoData} />} />
-          <Route path="*" element={<Navigate to="/app" replace />} />
+          <Route path="*" element={<Navigate to="/app/admin" replace />} />
         </Routes>
       </main>
     </div>
@@ -192,7 +210,9 @@ function App() {
     <HashRouter>
       <Routes>
         <Route path="/" element={<LandingView />} />
-        <Route path="/app/*" element={platformRoutes} />
+        <Route path="/app" element={<AccessView />} />
+        <Route path="/app/cliente/*" element={clientRoutes} />
+        <Route path="/app/admin/*" element={adminRoutes} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </HashRouter>
