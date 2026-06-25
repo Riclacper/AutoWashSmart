@@ -1322,6 +1322,7 @@ button:disabled:hover {
 }
 
 .chart-card {
+  min-width: 0;
   padding: 18px;
   transition:
     transform 0.16s ease,
@@ -1351,9 +1352,11 @@ button:disabled:hover {
   align-items: start;
   justify-content: space-between;
   gap: 12px;
+  min-width: 0;
 }
 
 .chart-heading h3 {
+  min-width: 0;
   margin-bottom: 0;
 }
 
@@ -1366,9 +1369,9 @@ button:disabled:hover {
 .bars {
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: minmax(34px, 1fr);
+  grid-auto-columns: minmax(30px, 1fr);
   align-items: end;
-  gap: 12px;
+  gap: 10px;
   height: 232px;
   padding-top: 24px;
   overflow: visible;
@@ -1386,12 +1389,22 @@ button:disabled:hover {
 }
 
 .bar-value {
+  display: grid;
+  gap: 1px;
   align-self: start;
   color: var(--muted);
   font-size: 11px;
   font-weight: 800;
-  line-height: 1.28;
+  line-height: 1.12;
   text-align: center;
+  white-space: nowrap;
+}
+
+.bar-value small {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 900;
+  line-height: 1;
 }
 
 .bar-fill {
@@ -1489,7 +1502,7 @@ button:disabled:hover {
 
 .expanded-chart-panel {
   display: grid;
-  grid-template-columns: minmax(180px, 0.42fr) minmax(360px, 1fr) minmax(220px, 0.5fr);
+  grid-template-columns: minmax(190px, 0.34fr) minmax(360px, 1fr);
   gap: 18px;
   align-items: stretch;
   margin-top: 18px;

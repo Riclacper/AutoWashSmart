@@ -22,6 +22,7 @@ export function AdminView({ metrics, state, resetDemoData }) {
   const operations = [...state.washes, ...state.selfServiceSessions, ...state.sales];
   const washCounts = countByDay(state.washes);
   const revenueTotals = countByDay(payments, (item) => item.price);
+  const productCounts = countByDay(state.sales);
   const cards = [
     ['Clientes cadastrados', metrics.customers, Users],
     ['Veículos cadastrados', metrics.vehicles, Car],
@@ -51,8 +52,21 @@ export function AdminView({ metrics, state, resetDemoData }) {
       points: weekDays.map((day, index) => ({
         label: day,
         value: revenueTotals[index],
-        display: currency(revenueTotals[index]),
+        prefix: 'R$',
+        display: revenueTotals[index].toFixed(2),
         detail: `${currency(revenueTotals[index])} registrados em ${day}`,
+      })),
+    },
+    {
+      key: 'products',
+      title: 'Produtos por dia',
+      summary: `${metrics.products} vendidos`,
+      description: 'Quantidade de produtos liberados pela mini shop autônoma.',
+      points: weekDays.map((day, index) => ({
+        label: day,
+        value: productCounts[index],
+        display: `${productCounts[index]} prod.`,
+        detail: `${productCounts[index]} produto(s) vendido(s) em ${day}`,
       })),
     },
   ];

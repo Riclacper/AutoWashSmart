@@ -42,7 +42,10 @@ export function SimChart({ title, points, summary, selected = false, expanded = 
               role="button"
               tabIndex={0}
             >
-              <span className="bar-value">{point.display}</span>
+              <span className="bar-value">
+                {point.prefix && <small>{point.prefix}</small>}
+                {point.display}
+              </span>
               <span className="bar-fill" style={{ height: `${height}%` }} />
               <small>{point.label}</small>
               {activePoint?.label === point.label && (
