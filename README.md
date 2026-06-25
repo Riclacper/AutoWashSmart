@@ -79,6 +79,8 @@ O modo cliente mostra uma experiencia limitada ao proprio usuario:
 
 O cliente nao acessa indicadores gerais, lista completa de clientes ou operacao administrativa.
 
+O botao `Trocar perfil` na sidebar retorna para a tela demonstrativa publica.
+
 ## Perfil Administrador
 
 O modo administrador mostra a operacao completa:

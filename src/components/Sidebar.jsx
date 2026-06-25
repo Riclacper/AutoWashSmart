@@ -40,7 +40,7 @@ export function Sidebar({ mode }) {
           <small>{mode === 'client' ? 'Portal do cliente' : 'Operacao admin'}</small>
         </span>
       </NavLink>
-      <NavLink className="mode-switch" to="/app">
+      <NavLink className="mode-switch" to="/">
         <ClipboardList size={16} />
         Trocar perfil
       </NavLink>
