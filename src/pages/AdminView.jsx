@@ -3,11 +3,6 @@ import { SimChart } from '../components/SimChart.jsx';
 
 const weekDays = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab', 'Dom'];
 
-function normalizeChart(values) {
-  const max = Math.max(...values, 1);
-  return values.map((value) => Math.max(8, Math.round((value / max) * 100)));
-}
-
 function countByDay(items, valueSelector = () => 1) {
   return weekDays.map((day) =>
     items
@@ -21,7 +16,13 @@ function countProducts(sales) {
     acc[sale.name] = (acc[sale.name] || 0) + 1;
     return acc;
   }, {});
-  return Object.values(totals).length ? Object.values(totals) : [0];
+  return Object.entries(totals)
+    .sort(([, totalA], [, totalB]) => totalB - totalA)
+    .slice(0, 5);
+}
+
+function currency(value) {
+  return `R$ ${value.toFixed(2)}`;
 }
 
 export function AdminView({ metrics, state, resetDemoData }) {
@@ -35,9 +36,22 @@ export function AdminView({ metrics, state, resetDemoData }) {
   const activities = [...state.washes, ...state.sales]
     .sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0))
     .slice(0, 6);
-  const washesByDay = normalizeChart(countByDay(state.washes));
-  const revenueByDay = normalizeChart(countByDay([...state.washes, ...state.sales], (item) => item.price));
-  const productsSold = normalizeChart(countProducts(state.sales));
+  const washCounts = countByDay(state.washes);
+  const revenueTotals = countByDay([...state.washes, ...state.sales], (item) => item.price);
+  const productTotals = countProducts(state.sales);
+  const washesByDay = weekDays.map((day, index) => ({
+    label: day,
+    value: washCounts[index],
+    display: `${washCounts[index]} lav.`,
+  }));
+  const revenueByDay = weekDays.map((day, index) => ({
+    label: day,
+    value: revenueTotals[index],
+    display: currency(revenueTotals[index]),
+  }));
+  const productsSold = productTotals.length
+    ? productTotals.map(([name, total]) => ({ label: name, value: total, display: `${total} un.` }))
+    : [{ label: 'Sem vendas', value: 0, display: '0 un.' }];
 
   return (
     <section className="screen">
@@ -56,9 +70,9 @@ export function AdminView({ metrics, state, resetDemoData }) {
         ))}
       </div>
       <div className="chart-grid">
-        <SimChart title="Lavagens por dia" values={washesByDay} />
-        <SimChart title="Receita por dia" values={revenueByDay} />
-        <SimChart title="Produtos vendidos" values={productsSold} />
+        <SimChart title="Lavagens por dia" points={washesByDay} summary={`${metrics.washes} lavagens`} />
+        <SimChart title="Receita por dia" points={revenueByDay} summary={currency(metrics.revenue)} />
+        <SimChart title="Produtos vendidos" points={productsSold} summary={`${metrics.products} itens`} />
       </div>
       <div className="recent-list">
         <h3>Ultimas atividades</h3>
