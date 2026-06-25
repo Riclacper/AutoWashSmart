@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import landingHero from '../assets/landing-hero.jpg';
+import logo from '../assets/logo.png';
 
 const modules = [
   ['Totem de entrada', 'Placa, QR Code e reconhecimento facial simulados.', ScanFace],
@@ -49,10 +50,7 @@ export function LandingView() {
         <div className="landing-overlay" />
         <nav className="landing-nav" aria-label="AutoWash Smart">
           <div className="landing-brand">
-            <span>
-              <Waves size={22} />
-            </span>
-            <strong>AutoWash Smart</strong>
+            <img src={logo} alt="AutoWash Smart" />
           </div>
           <button onClick={() => navigate('/app')}>
             Entrar na plataforma <ArrowRight size={17} />
