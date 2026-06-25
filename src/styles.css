@@ -1256,7 +1256,8 @@ button:disabled:hover {
 .product-card {
   display: grid;
   gap: 10px;
-  padding: 20px;
+  align-content: start;
+  padding: 18px;
 }
 
 .product-card svg {
@@ -1267,18 +1268,21 @@ button:disabled:hover {
   display: grid;
   place-items: center;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 1 / 1;
   overflow: hidden;
   border: 1px solid #e1edf2;
   border-radius: 8px;
-  background: #f4f3ef;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(238, 246, 242, 0.72)),
+    #eef7f3;
 }
 
 .product-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
   display: block;
+  width: 92%;
+  height: 92%;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 18px rgba(15, 32, 48, 0.14));
 }
 
 .product-card h3 {
@@ -2098,6 +2102,14 @@ button:disabled:hover {
 
   .chart-card {
     padding: 14px;
+  }
+
+  .product-card {
+    padding: 14px;
+  }
+
+  .product-image {
+    aspect-ratio: 16 / 10;
   }
 
   .bars {
