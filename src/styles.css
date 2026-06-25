@@ -1456,34 +1456,53 @@ button:disabled:hover {
 
 .client-hero-card {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 220px;
-  gap: 18px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 16px;
   align-items: center;
-  padding: 24px;
+  min-height: 112px;
+  padding: 16px 18px;
 }
 
-.client-avatar,
+.client-identity,
 .client-plan {
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+}
+
+.client-identity {
+  gap: 14px;
+}
+
+.client-identity h3,
+.client-identity p {
+  margin-bottom: 0;
 }
 
 .client-avatar {
-  width: 52px;
-  height: 52px;
-  margin-bottom: 12px;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
   border-radius: 8px;
   color: var(--green-2);
   background: var(--green-soft);
 }
 
 .client-plan {
-  gap: 6px;
-  min-height: 140px;
+  gap: 10px;
+  min-width: 190px;
+  min-height: 66px;
+  justify-content: center;
+  padding: 0 16px;
   border-radius: 8px;
   color: #07583d;
   background: var(--green-soft);
-  text-align: center;
+  text-align: left;
+}
+
+.client-plan span,
+.client-plan strong {
+  display: block;
 }
 
 .client-grid {

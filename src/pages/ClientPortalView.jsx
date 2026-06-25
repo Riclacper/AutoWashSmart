@@ -25,15 +25,19 @@ export function ClientPortalView({ state }) {
       </div>
 
       <div className="client-hero-card">
-        <div>
+        <div className="client-identity">
           <span className="client-avatar"><UserRound size={28} /></span>
-          <h3>{customer?.name || 'Cliente demo'}</h3>
-          <p>{customer?.email || 'cliente@autowash.local'}</p>
+          <div>
+            <h3>{customer?.name || 'Cliente demo'}</h3>
+            <p>{customer?.email || 'cliente@autowash.local'}</p>
+          </div>
         </div>
         <div className="client-plan">
           <BadgeCheck size={24} />
-          <strong>{customer?.plan || 'Smart Plus'}</strong>
-          <span>Plano ativo</span>
+          <div>
+            <strong>{customer?.plan || 'Smart Plus'}</strong>
+            <span>Plano ativo</span>
+          </div>
         </div>
       </div>
 
