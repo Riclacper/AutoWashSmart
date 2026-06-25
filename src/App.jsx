@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { Sidebar } from './components/Sidebar.jsx';
 import { demoState, selfServiceOptions, serviceOptions } from './data/catalog.js';
@@ -13,8 +13,9 @@ import { SelfServiceView } from './pages/SelfServiceView.jsx';
 import { ShopView } from './pages/ShopView.jsx';
 import { TotemView } from './pages/TotemView.jsx';
 import { WashView } from './pages/WashView.jsx';
-import { loadState, saveState } from './services/storage.js';
+import { loadState, migrateState, saveState } from './services/storage.js';
 import {
+  buildPaymentRecord,
   buildSelfServiceSession,
   buildWashRecord,
   findDuplicateCustomerReason,
@@ -33,10 +34,19 @@ function App() {
   const [selfActive, setSelfActive] = useState(false);
   const [activeSelfServiceId, setActiveSelfServiceId] = useState(null);
   const [checkout, setCheckout] = useState(null);
+  const washIntervalRef = useRef(null);
+
+  function clearWashTimer() {
+    if (!washIntervalRef.current) return;
+    window.clearInterval(washIntervalRef.current);
+    washIntervalRef.current = null;
+  }
 
   useEffect(() => {
     saveState(state);
   }, [state]);
+
+  useEffect(() => clearWashTimer, []);
 
   useEffect(() => {
     if (!selfActive) return undefined;
@@ -73,19 +83,15 @@ function App() {
       (total, customer) => total + customer.vehicles.length,
       0,
     );
-    const washRevenue = state.washes.reduce((total, item) => total + item.price, 0);
-    const selfServiceRevenue = state.selfServiceSessions.reduce(
-      (total, item) => total + item.price,
-      0,
-    );
-    const shopRevenue = state.sales.reduce((total, item) => total + item.price, 0);
+    const payments = state.payments || [];
+    const revenue = payments.reduce((total, item) => total + item.price, 0);
 
     return {
       customers: state.customers.length,
       vehicles,
       washes: state.washes.length,
       selfService: state.selfServiceSessions.length,
-      revenue: washRevenue + selfServiceRevenue + shopRevenue,
+      revenue,
       products: state.sales.length,
     };
   }, [state]);
@@ -159,6 +165,7 @@ function App() {
     }
     if (isWashing) return { ok: false, message: 'Já existe uma lavagem em andamento.' };
 
+    clearWashTimer();
     const washIdentification = identified;
     const entry = new Date();
     setIsWashing(true);
@@ -169,7 +176,7 @@ function App() {
       setWashProgress((value) => {
         const next = Math.min(value + 20, 100);
         if (next === 100) {
-          window.clearInterval(intervalId);
+          clearWashTimer();
           const exit = new Date();
           const wash = buildWashRecord({
             identified: washIdentification,
@@ -178,14 +185,30 @@ function App() {
             exit,
             id: crypto.randomUUID(),
           });
-          setCheckout(wash);
+          const payment = buildPaymentRecord({
+            id: crypto.randomUUID(),
+            sourceId: wash.id,
+            sourceType: 'wash',
+            service: wash.service,
+            price: wash.price,
+            customerId: wash.customerId,
+            customerName: wash.customerName,
+            vehiclePlate: wash.vehiclePlate,
+            createdAt: exit,
+          });
+          setCheckout(payment);
           setIsWashing(false);
           setIdentified(null);
-          setState((current) => ({ ...current, washes: [wash, ...current.washes] }));
+          setState((current) => ({
+            ...current,
+            washes: [wash, ...current.washes],
+            payments: [payment, ...(current.payments || [])],
+          }));
         }
         return next;
       });
     }, 650);
+    washIntervalRef.current = intervalId;
 
     return {
       ok: true,
@@ -209,6 +232,17 @@ function App() {
       startedAt: new Date(),
       id: crypto.randomUUID(),
     });
+    const payment = buildPaymentRecord({
+      id: crypto.randomUUID(),
+      sourceId: session.id,
+      sourceType: 'self-service',
+      service: `Self-service ${option.minutes} min`,
+      price: option.price,
+      customerId: session.customerId,
+      customerName: session.customerName,
+      vehiclePlate: session.vehiclePlate,
+      createdAt: new Date(session.createdAt),
+    });
 
     setSelfMinutes(option.minutes);
     setSelfRemaining(option.minutes * 60);
@@ -217,6 +251,7 @@ function App() {
     setState((current) => ({
       ...current,
       selfServiceSessions: [session, ...current.selfServiceSessions],
+      payments: [payment, ...(current.payments || [])],
     }));
 
     return {
@@ -242,11 +277,26 @@ function App() {
       day: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'][now.getDay()],
       createdAt: now.getTime(),
     };
-    setState((current) => ({ ...current, sales: [sale, ...current.sales] }));
+    const payment = buildPaymentRecord({
+      id: crypto.randomUUID(),
+      sourceId: sale.id,
+      sourceType: 'sale',
+      service: sale.name,
+      price: sale.price,
+      customerId: sale.customerId,
+      customerName: sale.customerName,
+      createdAt: now,
+    });
+    setState((current) => ({
+      ...current,
+      sales: [sale, ...current.sales],
+      payments: [payment, ...(current.payments || [])],
+    }));
     return { ok: true, message: `Produto liberado para ${customer.name}.` };
   }
 
   function resetDemoData() {
+    clearWashTimer();
     setIdentified(null);
     setCheckout(null);
     setWashProgress(0);
@@ -255,7 +305,7 @@ function App() {
     setSelfRemaining(selfServiceOptions[0].minutes * 60);
     setSelfActive(false);
     setActiveSelfServiceId(null);
-    setState(JSON.parse(JSON.stringify(demoState)));
+    setState(migrateState(JSON.parse(JSON.stringify(demoState))));
   }
 
   const clientRoutes = (
@@ -272,7 +322,9 @@ function App() {
               <ShopView
                 buyProduct={buyProduct}
                 customer={state.customers[0]}
-                latestSale={state.sales.find((sale) => sale.customerId === state.customers[0]?.id)}
+                latestPayment={state.payments?.find(
+                  (payment) => payment.customerId === state.customers[0]?.id,
+                )}
               />
             }
           />
@@ -325,6 +377,9 @@ function App() {
                 setSelfRemaining={setSelfRemaining}
                 selfActive={selfActive}
                 startSelfService={startSelfService}
+                latestPayment={state.payments?.find(
+                  (payment) => payment.sourceType === 'self-service',
+                )}
               />
             }
           />
@@ -334,7 +389,7 @@ function App() {
               <ShopView
                 buyProduct={buyProduct}
                 identified={identified}
-                latestSale={state.sales[0]}
+                latestPayment={state.payments?.[0]}
               />
             }
           />

@@ -9,6 +9,7 @@ export const initialState = {
   washes: [],
   selfServiceSessions: [],
   sales: [],
+  payments: [],
 };
 
 function asArray(value) {
@@ -156,21 +157,69 @@ function migrateSales(sales, customers) {
   });
 }
 
+function operationPaymentService(item) {
+  if (item.type === 'self-service') return `Self-service ${item.minutes} min`;
+  return item.service || item.name || 'Serviço';
+}
+
+function operationPaymentTime(item) {
+  return item.time || item.exit || item.entry || '';
+}
+
+function migratePayments(payments, operations) {
+  const hasExplicitPayments = asArray(payments).length > 0;
+  const source = hasExplicitPayments ? asArray(payments) : operations;
+
+  return source.map((payment, index) => {
+    const createdAt = Number(payment.createdAt) || Date.now() + index;
+    const isRealTimestamp = createdAt > 1000000000000;
+    const sourceId = payment.sourceId || payment.id || null;
+
+    return {
+      ...payment,
+      id: hasExplicitPayments
+        ? payment.id || fallbackId('payment', sourceId || createdAt, index)
+        : fallbackId('payment', sourceId || createdAt, index),
+      type: 'payment',
+      sourceId,
+      sourceType: payment.sourceType || payment.type || 'operation',
+      service: operationPaymentService(payment),
+      price: Number(payment.price) || 0,
+      customerId: payment.customerId || null,
+      customerName: payment.customerName || 'Cliente não identificado',
+      vehiclePlate: normalizePlate(payment.vehiclePlate || payment.plate) || null,
+      date:
+        payment.date ||
+        payment.paymentDate ||
+        (isRealTimestamp ? new Date(createdAt).toLocaleDateString('pt-BR') : 'Dados demo'),
+      time: payment.time || payment.paymentTime || operationPaymentTime(payment),
+      day: payment.day || weekDays[new Date(createdAt).getDay()],
+      status: hasExplicitPayments ? payment.status || payment.paymentStatus || 'Aprovado' : 'Aprovado',
+      createdAt,
+    };
+  });
+}
+
 export function migrateState(value) {
   const customers = migrateCustomers(value?.customers);
+  const washes = migrateWashes(value?.washes, customers);
+  const selfServiceSessions = migrateSelfServiceSessions(value?.selfServiceSessions, customers);
+  const sales = migrateSales(value?.sales, customers);
+  const operations = [...washes, ...selfServiceSessions, ...sales];
 
   return {
     customers,
-    washes: migrateWashes(value?.washes, customers),
-    selfServiceSessions: migrateSelfServiceSessions(value?.selfServiceSessions, customers),
-    sales: migrateSales(value?.sales, customers),
+    washes,
+    selfServiceSessions,
+    sales,
+    payments: migratePayments(value?.payments, operations),
   };
 }
 
 export function loadState() {
   try {
     const saved = localStorage.getItem(storageKey);
-    if (!saved) return demoState;
+    if (!saved) return migrateState(demoState);
 
     const parsed = JSON.parse(saved);
     const migrated = migrateState(parsed);
@@ -178,11 +227,12 @@ export function loadState() {
       migrated.customers.length ||
       migrated.washes.length ||
       migrated.selfServiceSessions.length ||
-      migrated.sales.length;
+      migrated.sales.length ||
+      migrated.payments.length;
 
-    return hasOperationalData ? migrated : demoState;
+    return hasOperationalData ? migrated : migrateState(demoState);
   } catch {
-    return demoState;
+    return migrateState(demoState);
   }
 }
 

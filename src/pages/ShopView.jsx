@@ -1,8 +1,9 @@
 import { CheckCircle2, PackageCheck } from 'lucide-react';
 import { useState } from 'react';
+import { PaymentSummary } from '../components/PaymentSummary.jsx';
 import { products } from '../data/catalog.js';
 
-export function ShopView({ buyProduct, latestSale, customer = null, identified = null }) {
+export function ShopView({ buyProduct, latestPayment, customer = null, identified = null }) {
   const [feedback, setFeedback] = useState(null);
   const activeCustomer = customer || identified?.customer || null;
 
@@ -44,12 +45,7 @@ export function ShopView({ buyProduct, latestSale, customer = null, identified =
           {feedback.message}
         </div>
       )}
-      {latestSale && (
-        <div className="release-banner">
-          <CheckCircle2 size={22} />
-          Produto liberado: {latestSale.name}
-        </div>
-      )}
+      <PaymentSummary payment={latestPayment} title="Compra aprovada" />
     </section>
   );
 }
