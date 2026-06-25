@@ -1409,7 +1409,8 @@ button:disabled:hover {
 
 .bar-fill {
   display: block;
-  width: 100%;
+  justify-self: center;
+  width: min(100%, 36px);
   min-height: 8px;
   border-radius: 8px 8px 0 0;
   background: linear-gradient(180deg, var(--green), var(--navy-2));
@@ -1528,6 +1529,10 @@ button:disabled:hover {
 
 .expanded-chart-panel .bars {
   height: 328px;
+}
+
+.expanded-chart-panel .bar-fill {
+  width: min(100%, 48px);
 }
 
 .chart-detail-list {
