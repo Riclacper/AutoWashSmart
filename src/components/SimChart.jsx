@@ -58,6 +58,12 @@ export function SimChart({ title, points, summary, selected = false, expanded = 
           );
         })}
       </div>
+      {activePoint && (
+        <div className="chart-touch-detail" aria-live="polite">
+          <strong>{activePoint.label}</strong>
+          <span>{activePoint.detail || activePoint.display}</span>
+        </div>
+      )}
     </article>
   );
 }

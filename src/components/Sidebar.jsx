@@ -12,7 +12,7 @@ import {
   Waves,
   X,
 } from 'lucide-react';
-import logo from '../assets/logo.png';
+import logoCar from '../assets/logo-car.png';
 
 const navItems = {
   client: [
@@ -44,7 +44,7 @@ export function Sidebar({ mode }) {
       <div className="sidebar-top">
         <NavLink className="brand" to="/app" aria-label="AutoWash Smart" onClick={closeMenu}>
           <span className="brand-logo">
-            <img src={logo} alt="" />
+            <img src={logoCar} alt="" />
           </span>
           <span>
             <strong>AutoWash</strong>
