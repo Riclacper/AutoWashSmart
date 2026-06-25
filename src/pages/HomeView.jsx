@@ -2,7 +2,10 @@ import { BadgeCheck, Car, ChevronRight, Droplets, Sparkles, SprayCan } from 'luc
 import { useNavigate } from 'react-router-dom';
 
 const homeTiles = [
-  ['Como funciona', 'Identifique o veículo, escolha o serviço e acompanhe a lavagem em tempo real.'],
+  [
+    'Como funciona',
+    'Identifique o veículo, escolha o serviço e acompanhe a lavagem em tempo real.',
+  ],
   ['Serviços', 'Express, Premium, SUV Care e self-service com consumo simulado.'],
   ['Planos', 'Assinaturas e lavagens avulsas prontas para demonstração comercial.'],
   ['Benefícios', 'Menos fila, cobrança automática e operação acompanhada por indicadores.'],
@@ -27,8 +30,8 @@ export function HomeView() {
           <span className="eyebrow">Lava a jato inteligente</span>
           <h1>AutoWash Smart</h1>
           <p>
-            Um protótipo navegável para uma operação automatizada, com entrada digital,
-            lavagem guiada, cobrança simulada, self-service e mini shop.
+            Um protótipo navegável para uma operação automatizada, com entrada digital, lavagem
+            guiada, cobrança simulada, self-service e mini shop.
           </p>
           <div className="hero-actions">
             <button className="primary-action" onClick={() => navigate('/app/admin/totem')}>

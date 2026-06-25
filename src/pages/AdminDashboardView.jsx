@@ -115,8 +115,16 @@ export function AdminView({ metrics, state, resetDemoData }) {
             const isWash = item.type === 'wash' || Boolean(item.service);
             return (
               <article className="activity-row" key={item.id}>
-                <span className={isWash || isSelfService ? 'activity-icon wash' : 'activity-icon sale'}>
-                  {isSelfService ? <Gauge size={18} /> : isWash ? <Waves size={18} /> : <ShoppingBag size={18} />}
+                <span
+                  className={isWash || isSelfService ? 'activity-icon wash' : 'activity-icon sale'}
+                >
+                  {isSelfService ? (
+                    <Gauge size={18} />
+                  ) : isWash ? (
+                    <Waves size={18} />
+                  ) : (
+                    <ShoppingBag size={18} />
+                  )}
                 </span>
                 <div className="activity-main">
                   <strong>

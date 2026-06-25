@@ -14,21 +14,29 @@ export function AccessView() {
         </div>
         <div className="access-grid">
           <button className="access-card" onClick={() => navigate('/app/cliente/portal')}>
-            <span><UserRound size={28} /></span>
+            <span>
+              <UserRound size={28} />
+            </span>
             <h2>Cliente</h2>
             <p>Área com veículos, plano, QR Code, histórico, compras e recibos simulados.</p>
             <strong>Entrar como cliente</strong>
           </button>
           <button className="access-card admin-access" onClick={() => navigate('/app/admin')}>
-            <span><ShieldCheck size={28} /></span>
+            <span>
+              <ShieldCheck size={28} />
+            </span>
             <h2>Administrador</h2>
             <p>Operação completa com cadastros, totem, lavagem, loja, self-service e dashboard.</p>
             <strong>Entrar como admin</strong>
           </button>
         </div>
         <div className="access-summary">
-          <span><Car size={18} /> Placa demo: AWS2026</span>
-          <span><BarChart3 size={18} /> Dados demo restauráveis no painel admin</span>
+          <span>
+            <Car size={18} /> Placa demo: AWS2026
+          </span>
+          <span>
+            <BarChart3 size={18} /> Dados demo restauráveis no painel admin
+          </span>
         </div>
       </section>
     </main>

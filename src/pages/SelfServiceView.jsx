@@ -52,7 +52,10 @@ export function SelfServiceView({
             <ShieldAlert size={28} />
             <strong>Identificação obrigatória</strong>
             <p>Libere o cliente e o veículo no totem antes de ocupar o box.</p>
-            <button className="text-action compact-action" onClick={() => navigate('/app/admin/totem')}>
+            <button
+              className="text-action compact-action"
+              onClick={() => navigate('/app/admin/totem')}
+            >
               Voltar ao totem
             </button>
           </div>
@@ -90,7 +93,9 @@ export function SelfServiceView({
       </div>
       <div className="self-console">
         <Gauge size={44} />
-        <h3>{selfActive ? `${remainingLabel} restantes` : `${selfMinutes} minutos selecionados`}</h3>
+        <h3>
+          {selfActive ? `${remainingLabel} restantes` : `${selfMinutes} minutos selecionados`}
+        </h3>
         <strong>R$ {selectedOption.price.toFixed(2)}</strong>
         <div className="meter">
           <span

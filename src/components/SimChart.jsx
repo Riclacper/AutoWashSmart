@@ -6,11 +6,9 @@ export function SimChart({ title, points, summary, selected = false, expanded = 
 
   return (
     <article
-      className={[
-        'chart-card',
-        selected ? 'selected' : '',
-        expanded ? 'expanded' : '',
-      ].filter(Boolean).join(' ')}
+      className={['chart-card', selected ? 'selected' : '', expanded ? 'expanded' : '']
+        .filter(Boolean)
+        .join(' ')}
       onClick={onSelect}
       role={onSelect ? 'button' : undefined}
       tabIndex={onSelect ? 0 : undefined}

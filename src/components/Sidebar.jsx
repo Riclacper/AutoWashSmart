@@ -34,7 +34,9 @@ export function Sidebar({ mode }) {
   return (
     <aside className="sidebar">
       <NavLink className="brand" to="/app" aria-label="AutoWash Smart">
-        <span className="brand-icon"><Droplets size={24} /></span>
+        <span className="brand-icon">
+          <Droplets size={24} />
+        </span>
         <span>
           <strong>AutoWash</strong>
           <small>{mode === 'client' ? 'Portal do cliente' : 'Operação admin'}</small>

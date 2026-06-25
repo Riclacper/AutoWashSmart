@@ -17,13 +17,19 @@ export function ClientProfileView({ state }) {
           <UserRound size={24} />
           <h3>{customer?.name || 'Cliente demo'}</h3>
           <p>{customer?.email || 'cliente@autowash.local'}</p>
-          <p><Phone size={16} /> {customer?.phone || '(81) 99999-0000'}</p>
+          <p>
+            <Phone size={16} /> {customer?.phone || '(81) 99999-0000'}
+          </p>
         </article>
         <article className="profile-card">
           <ShieldCheck size={24} />
           <h3>Autorizados</h3>
           {authorized.length ? (
-            authorized.map((person) => <p key={person.name}>{person.name} - {person.relation}</p>)
+            authorized.map((person) => (
+              <p key={person.name}>
+                {person.name} - {person.relation}
+              </p>
+            ))
           ) : (
             <p>Nenhuma pessoa autorizada.</p>
           )}
@@ -35,7 +41,9 @@ export function ClientProfileView({ state }) {
         {vehicles.map((vehicle) => (
           <p key={vehicle.plate}>
             <strong>{vehicle.plate}</strong>
-            <span>{vehicle.brand} {vehicle.model} - {vehicle.color} - {vehicle.category}</span>
+            <span>
+              {vehicle.brand} {vehicle.model} - {vehicle.color} - {vehicle.category}
+            </span>
           </p>
         ))}
       </div>

@@ -49,7 +49,9 @@ export function LandingView() {
         <div className="landing-overlay" />
         <nav className="landing-nav" aria-label="AutoWash Smart">
           <div className="landing-brand">
-            <span><Waves size={22} /></span>
+            <span>
+              <Waves size={22} />
+            </span>
             <strong>AutoWash Smart</strong>
           </div>
           <button onClick={() => navigate('/app')}>
@@ -72,9 +74,15 @@ export function LandingView() {
             </button>
           </div>
           <div className="landing-proof">
-            <span><ShieldCheck size={18} /> Sem hardware real</span>
-            <span><CreditCard size={18} /> Pagamento simulado</span>
-            <span><BadgeCheck size={18} /> Dados locais</span>
+            <span>
+              <ShieldCheck size={18} /> Sem hardware real
+            </span>
+            <span>
+              <CreditCard size={18} /> Pagamento simulado
+            </span>
+            <span>
+              <BadgeCheck size={18} /> Dados locais
+            </span>
           </div>
         </div>
       </section>
@@ -84,8 +92,8 @@ export function LandingView() {
           <span className="eyebrow">Para interessados</span>
           <h2>O que o sistema demonstra</h2>
           <p>
-            Uma visão completa do produto antes de qualquer investimento em sensores,
-            catracas, pagamentos ou integrações externas.
+            Uma visão completa do produto antes de qualquer investimento em sensores, catracas,
+            pagamentos ou integrações externas.
           </p>
         </div>
         <div className="landing-module-grid">
@@ -106,7 +114,9 @@ export function LandingView() {
         </div>
         <div className="benefit-list">
           {benefits.map((benefit) => (
-            <span key={benefit}><CheckCircle2 size={18} /> {benefit}</span>
+            <span key={benefit}>
+              <CheckCircle2 size={18} /> {benefit}
+            </span>
           ))}
         </div>
       </section>
@@ -128,7 +138,9 @@ export function LandingView() {
       </section>
 
       <section className="landing-cta">
-        <span className="landing-cta-icon"><Car size={30} /></span>
+        <span className="landing-cta-icon">
+          <Car size={30} />
+        </span>
         <div className="landing-cta-copy">
           <span className="eyebrow">Demonstração guiada</span>
           <h2>Pronto para explorar o MVP.</h2>

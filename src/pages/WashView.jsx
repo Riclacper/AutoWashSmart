@@ -41,7 +41,10 @@ export function WashView({
           <ShieldAlert size={28} />
           <strong>Identificação obrigatória</strong>
           <p>Nenhuma lavagem pode começar sem cliente e veículo liberados pelo totem.</p>
-          <button className="text-action compact-action" onClick={() => navigate('/app/admin/totem')}>
+          <button
+            className="text-action compact-action"
+            onClick={() => navigate('/app/admin/totem')}
+          >
             Voltar ao totem
           </button>
         </div>
@@ -49,7 +52,9 @@ export function WashView({
 
       {feedback && (
         <div className={feedback.type === 'success' ? 'approval-panel approved' : 'approval-panel'}>
-          <strong>{feedback.type === 'success' ? 'Operação iniciada' : 'Operação bloqueada'}</strong>
+          <strong>
+            {feedback.type === 'success' ? 'Operação iniciada' : 'Operação bloqueada'}
+          </strong>
           <p>{feedback.message}</p>
         </div>
       )}
@@ -58,7 +63,9 @@ export function WashView({
         {serviceOptions.map((service) => (
           <button
             key={service.name}
-            className={selectedService.name === service.name ? 'service-option selected' : 'service-option'}
+            className={
+              selectedService.name === service.name ? 'service-option selected' : 'service-option'
+            }
             onClick={() => setSelectedService(service)}
             disabled={isWashing}
           >

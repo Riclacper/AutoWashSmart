@@ -7,7 +7,9 @@ export function normalizeEmail(value = '') {
 }
 
 export function normalizePlate(value = '') {
-  return String(value).replace(/[^a-zA-Z0-9]/g, '').toUpperCase();
+  return String(value)
+    .replace(/[^a-zA-Z0-9]/g, '')
+    .toUpperCase();
 }
 
 export function isValidEmail(value) {
@@ -58,7 +60,10 @@ export function isValidCNPJ(value) {
   };
 
   const first = calculateDigit(cnpj.slice(0, 12), [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]);
-  const second = calculateDigit(`${cnpj.slice(0, 12)}${first}`, [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]);
+  const second = calculateDigit(
+    `${cnpj.slice(0, 12)}${first}`,
+    [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2],
+  );
 
   return first === Number(cnpj[12]) && second === Number(cnpj[13]);
 }

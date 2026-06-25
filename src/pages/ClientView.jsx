@@ -97,25 +97,58 @@ export function ClientView({ state, addCustomer }) {
         </div>
 
         {feedback && (
-          <div className={feedback.type === 'success' ? 'approval-panel approved' : 'approval-panel'}>
-            <strong>{feedback.type === 'success' ? 'Cadastro concluído' : 'Revise os dados'}</strong>
+          <div
+            className={feedback.type === 'success' ? 'approval-panel approved' : 'approval-panel'}
+          >
+            <strong>
+              {feedback.type === 'success' ? 'Cadastro concluído' : 'Revise os dados'}
+            </strong>
             <p>{feedback.message}</p>
           </div>
         )}
 
         <form className="form-panel" onSubmit={submit}>
           <div className="form-grid">
-            <Field label="Nome" value={form.name} onChange={(value) => setForm({ ...form, name: value })} required />
-            <Field label="CPF/CNPJ" value={form.cpf} onChange={(value) => setForm({ ...form, cpf: value })} required />
-            <Field label="E-mail" type="email" value={form.email} onChange={(value) => setForm({ ...form, email: value })} required />
-            <Field label="Telefone" value={form.phone} onChange={(value) => setForm({ ...form, phone: value })} required />
+            <Field
+              label="Nome"
+              value={form.name}
+              onChange={(value) => setForm({ ...form, name: value })}
+              required
+            />
+            <Field
+              label="CPF/CNPJ"
+              value={form.cpf}
+              onChange={(value) => setForm({ ...form, cpf: value })}
+              required
+            />
+            <Field
+              label="E-mail"
+              type="email"
+              value={form.email}
+              onChange={(value) => setForm({ ...form, email: value })}
+              required
+            />
+            <Field
+              label="Telefone"
+              value={form.phone}
+              onChange={(value) => setForm({ ...form, phone: value })}
+              required
+            />
           </div>
 
           <h3>Pessoas autorizadas</h3>
           {form.authorized.map((item, index) => (
             <div className="form-grid compact" key={index}>
-              <Field label="Nome" value={item.name} onChange={(value) => updateAuthorized(index, 'name', value)} />
-              <Field label="Parentesco" value={item.relation} onChange={(value) => updateAuthorized(index, 'relation', value)} />
+              <Field
+                label="Nome"
+                value={item.name}
+                onChange={(value) => updateAuthorized(index, 'name', value)}
+              />
+              <Field
+                label="Parentesco"
+                value={item.relation}
+                onChange={(value) => updateAuthorized(index, 'relation', value)}
+              />
             </div>
           ))}
           {form.authorized.length < 3 && (
@@ -137,13 +170,36 @@ export function ClientView({ state, addCustomer }) {
           {form.vehicles.map((vehicle, index) => (
             <div className="form-panel" key={`vehicle-${index}`} style={{ marginBottom: 16 }}>
               <div className="form-grid">
-                <Field label="Placa" value={vehicle.plate} onChange={(value) => updateVehicle(index, 'plate', value)} required />
-                <Field label="Marca" value={vehicle.brand} onChange={(value) => updateVehicle(index, 'brand', value)} required />
-                <Field label="Modelo" value={vehicle.model} onChange={(value) => updateVehicle(index, 'model', value)} required />
-                <Field label="Cor" value={vehicle.color} onChange={(value) => updateVehicle(index, 'color', value)} required />
+                <Field
+                  label="Placa"
+                  value={vehicle.plate}
+                  onChange={(value) => updateVehicle(index, 'plate', value)}
+                  required
+                />
+                <Field
+                  label="Marca"
+                  value={vehicle.brand}
+                  onChange={(value) => updateVehicle(index, 'brand', value)}
+                  required
+                />
+                <Field
+                  label="Modelo"
+                  value={vehicle.model}
+                  onChange={(value) => updateVehicle(index, 'model', value)}
+                  required
+                />
+                <Field
+                  label="Cor"
+                  value={vehicle.color}
+                  onChange={(value) => updateVehicle(index, 'color', value)}
+                  required
+                />
                 <label className="field">
                   <span>Categoria</span>
-                  <select value={vehicle.category} onChange={(event) => updateVehicle(index, 'category', event.target.value)}>
+                  <select
+                    value={vehicle.category}
+                    onChange={(event) => updateVehicle(index, 'category', event.target.value)}
+                  >
                     <option>Hatch</option>
                     <option>Sedan</option>
                     <option>SUV</option>
@@ -158,7 +214,9 @@ export function ClientView({ state, addCustomer }) {
                   onClick={() =>
                     setForm((current) => ({
                       ...current,
-                      vehicles: current.vehicles.filter((_, vehicleIndex) => vehicleIndex !== index),
+                      vehicles: current.vehicles.filter(
+                        (_, vehicleIndex) => vehicleIndex !== index,
+                      ),
                     }))
                   }
                 >
