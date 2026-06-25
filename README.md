@@ -135,6 +135,7 @@ src/
 - Perfis simulados de cliente e administrador.
 - Dashboard administrativo com gráficos informativos, rotulados e expansível por clique/toque.
 - Mini shop com imagens locais para os produtos automotivos.
+- Refinamento visual do roteiro sugerido e CTA da landing demonstrativa.
 
 ## Diretriz de Manutenção
 

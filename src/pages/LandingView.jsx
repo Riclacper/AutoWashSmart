@@ -128,8 +128,9 @@ export function LandingView() {
       </section>
 
       <section className="landing-cta">
-        <Car size={34} />
-        <div>
+        <span className="landing-cta-icon"><Car size={30} /></span>
+        <div className="landing-cta-copy">
+          <span className="eyebrow">Demonstração guiada</span>
           <h2>Pronto para explorar o MVP.</h2>
           <p>Entre na plataforma com dados demo e percorra o fluxo completo.</p>
         </div>
