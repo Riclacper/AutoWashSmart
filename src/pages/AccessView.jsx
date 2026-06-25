@@ -1,5 +1,6 @@
 import { BarChart3, Car, ShieldCheck, UserRound } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import logo from '../assets/logo.png';
 
 export function AccessView() {
   const navigate = useNavigate();
@@ -7,6 +8,9 @@ export function AccessView() {
   return (
     <main className="access-page">
       <section className="access-panel">
+        <div className="access-logo">
+          <img src={logo} alt="AutoWash Smart" />
+        </div>
         <div className="screen-heading centered">
           <span className="eyebrow">Acesso demonstrativo</span>
           <h1>Escolha como deseja entrar</h1>

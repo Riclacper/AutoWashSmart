@@ -84,6 +84,18 @@ a {
   width: min(920px, 100%);
 }
 
+.access-logo {
+  display: grid;
+  place-items: center;
+  margin-bottom: 20px;
+}
+
+.access-logo img {
+  width: min(360px, 78vw);
+  height: auto;
+  filter: drop-shadow(0 18px 36px rgba(0, 0, 0, 0.22));
+}
+
 .access-panel .screen-heading h1 {
   color: #ffffff;
   font-size: 46px;
@@ -2010,6 +2022,14 @@ button:disabled:hover {
   .landing-content p,
   .section-intro p {
     font-size: 16px;
+  }
+
+  .access-logo {
+    margin-bottom: 14px;
+  }
+
+  .access-logo img {
+    width: min(280px, 82vw);
   }
 
   .landing-section {
