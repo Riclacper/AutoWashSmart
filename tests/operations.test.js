@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import {
+  buildPaymentRecord,
   buildSelfServiceSession,
   buildWashRecord,
   findDuplicateCustomerReason,
@@ -95,5 +96,25 @@ describe('operations', () => {
     expect(session.vehiclePlate).toBe('ABC1D23');
     expect(session.identificationMethod).toBe('QR Code');
     expect(session.status).toBe('Em andamento');
+  });
+
+  it('cria cobrança simulada aprovada com data e horário', () => {
+    const payment = buildPaymentRecord({
+      id: 'payment-test',
+      sourceId: 'wash-test',
+      sourceType: 'wash',
+      service: 'Premium',
+      price: 69.9,
+      customerId: 'customer-1',
+      customerName: 'Cliente Teste',
+      vehiclePlate: 'ABC1D23',
+      createdAt: new Date('2026-06-25T10:20:00-03:00'),
+    });
+
+    expect(payment.sourceId).toBe('wash-test');
+    expect(payment.service).toBe('Premium');
+    expect(payment.status).toBe('Aprovado');
+    expect(payment.date).toBeTruthy();
+    expect(payment.time).toBeTruthy();
   });
 });

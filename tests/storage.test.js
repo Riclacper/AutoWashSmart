@@ -41,5 +41,12 @@ describe('storage migration', () => {
     expect(migrated.washes[0].vehiclePlate).toBe('ABC1D23');
     expect(migrated.selfServiceSessions[0].customerId).toBe('customer-1');
     expect(migrated.sales[0].customerId).toBe('customer-1');
+    expect(migrated.payments).toHaveLength(3);
+    expect(migrated.payments[0]).toMatchObject({
+      type: 'payment',
+      sourceId: 'wash-1',
+      service: 'Express',
+      status: 'Aprovado',
+    });
   });
 });

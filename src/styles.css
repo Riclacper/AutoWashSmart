@@ -801,7 +801,7 @@ button:disabled:hover {
 .form-panel,
 .totem-device,
 .wash-stage,
-.checkout-panel,
+.payment-summary,
 .self-console,
 .product-card,
 .metric-card,
@@ -1187,7 +1187,7 @@ button:disabled:hover {
   background: var(--green);
 }
 
-.checkout-panel {
+.payment-summary {
   display: grid;
   grid-template-columns: 36px 1fr auto;
   gap: 14px;
@@ -1196,19 +1196,30 @@ button:disabled:hover {
   padding: 18px;
 }
 
-.checkout-panel svg {
+.payment-summary > svg {
   color: var(--green-2);
 }
 
-.checkout-panel p {
+.payment-summary p {
   margin-bottom: 0;
 }
 
-.checkout-times {
+.payment-main {
+  min-width: 0;
+}
+
+.payment-meta {
   display: grid;
   gap: 4px;
   color: #627482;
   font-size: 14px;
+}
+
+.payment-meta strong {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #07583d;
 }
 
 .time-options {
@@ -2044,7 +2055,7 @@ button:disabled:hover {
     font-size: 28px;
   }
 
-  .checkout-panel {
+  .payment-summary {
     grid-template-columns: 1fr;
   }
 

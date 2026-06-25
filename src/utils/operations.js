@@ -1,5 +1,7 @@
 import { normalizeEmail, normalizePlate, onlyDigits } from './validators.js';
 
+const weekDays = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'];
+
 export function findVehicleOwnerByPlate(customers, plate) {
   const normalizedPlate = normalizePlate(plate);
   if (!normalizedPlate) return null;
@@ -50,7 +52,7 @@ export function buildWashRecord({ identified, selectedService, entry, exit, id }
     status: 'Concluída',
     entry: entry.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),
     exit: exit.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),
-    day: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'][entry.getDay()],
+    day: weekDays[entry.getDay()],
     createdAt: exit.getTime(),
   };
 }
@@ -67,7 +69,38 @@ export function buildSelfServiceSession({ identified, minutes, price, startedAt,
     price,
     status: 'Em andamento',
     startedAt: startedAt.toISOString(),
-    day: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'][startedAt.getDay()],
+    day: weekDays[startedAt.getDay()],
     createdAt: startedAt.getTime(),
+  };
+}
+
+export function buildPaymentRecord({
+  id,
+  sourceId,
+  sourceType,
+  service,
+  price,
+  customerId,
+  customerName,
+  vehiclePlate = null,
+  createdAt = new Date(),
+}) {
+  const date = createdAt instanceof Date ? createdAt : new Date(createdAt);
+
+  return {
+    id,
+    type: 'payment',
+    sourceId,
+    sourceType,
+    service,
+    price: Number(price) || 0,
+    customerId,
+    customerName,
+    vehiclePlate,
+    date: date.toLocaleDateString('pt-BR'),
+    time: date.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),
+    day: weekDays[date.getDay()],
+    status: 'Aprovado',
+    createdAt: date.getTime(),
   };
 }

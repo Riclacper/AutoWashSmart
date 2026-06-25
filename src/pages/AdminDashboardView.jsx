@@ -18,9 +18,10 @@ function currency(value) {
 
 export function AdminView({ metrics, state, resetDemoData }) {
   const [selectedChartKey, setSelectedChartKey] = useState('revenue');
+  const payments = state.payments || [];
   const operations = [...state.washes, ...state.selfServiceSessions, ...state.sales];
   const washCounts = countByDay(state.washes);
-  const revenueTotals = countByDay(operations, (item) => item.price);
+  const revenueTotals = countByDay(payments, (item) => item.price);
   const cards = [
     ['Clientes cadastrados', metrics.customers, Users],
     ['Veículos cadastrados', metrics.vehicles, Car],

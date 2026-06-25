@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Droplets, Gauge, ShieldAlert } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { PaymentSummary } from '../components/PaymentSummary.jsx';
 import { selfServiceOptions } from '../data/catalog.js';
 
 export function SelfServiceView({
@@ -11,6 +12,7 @@ export function SelfServiceView({
   setSelfRemaining,
   selfActive,
   startSelfService,
+  latestPayment,
 }) {
   const [feedback, setFeedback] = useState(null);
   const totalSeconds = selfMinutes * 60;
@@ -90,6 +92,7 @@ export function SelfServiceView({
             <p>{feedback.message}</p>
           </div>
         )}
+        <PaymentSummary payment={latestPayment} />
       </div>
       <div className="self-console">
         <Gauge size={44} />

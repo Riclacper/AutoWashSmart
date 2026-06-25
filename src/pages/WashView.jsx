@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { Car, CreditCard, ShieldAlert } from 'lucide-react';
+import { Car, ShieldAlert } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { PaymentSummary } from '../components/PaymentSummary.jsx';
 import { serviceOptions, washSteps } from '../data/catalog.js';
 
 export function WashView({
@@ -100,28 +101,7 @@ export function WashView({
           {isWashing ? 'Lavagem em andamento' : 'Iniciar lavagem'}
         </button>
       </div>
-      {checkout && <CheckoutPanel checkout={checkout} />}
+      <PaymentSummary payment={checkout} />
     </section>
-  );
-}
-
-function CheckoutPanel({ checkout }) {
-  return (
-    <article className="checkout-panel">
-      <CreditCard size={26} />
-      <div>
-        <h3>Pagamento aprovado</h3>
-        <p>
-          {checkout.service} — R$ {checkout.price.toFixed(2)}
-        </p>
-        <small>
-          {checkout.customerName} — {checkout.vehiclePlate}
-        </small>
-      </div>
-      <div className="checkout-times">
-        <span>Entrada: {checkout.entry}</span>
-        <span>Saída: {checkout.exit}</span>
-      </div>
-    </article>
   );
 }
