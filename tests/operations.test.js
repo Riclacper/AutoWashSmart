@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import {
+  buildSelfServiceSession,
   buildWashRecord,
   findDuplicateCustomerReason,
   findVehicleOwnerByPlate,
@@ -46,6 +47,14 @@ describe('operations', () => {
         vehicles: [{ plate: 'abc-1d23' }],
       }),
     ).toContain('placas');
+
+    expect(
+      findDuplicateCustomerReason([], {
+        cpf: '11144477735',
+        email: 'novo@teste.com',
+        vehicles: [{ plate: 'DEF2E34' }, { plate: 'def-2e34' }],
+      }),
+    ).toContain('Não repita');
   });
 
   it('cria lavagem vinculada ao cliente e veículo', () => {
@@ -66,5 +75,25 @@ describe('operations', () => {
     expect(record.customerId).toBe('customer-1');
     expect(record.vehiclePlate).toBe('ABC1D23');
     expect(record.paymentStatus).toBe('Aprovado');
+  });
+
+  it('cria sessão self-service vinculada ao cliente e veículo', () => {
+    const startedAt = new Date('2026-06-25T11:00:00-03:00');
+    const session = buildSelfServiceSession({
+      identified: {
+        customer: customers[0],
+        vehicle: customers[0].vehicles[0],
+        method: 'QR Code',
+      },
+      minutes: 20,
+      price: 25,
+      startedAt,
+      id: 'self-test',
+    });
+
+    expect(session.customerId).toBe('customer-1');
+    expect(session.vehiclePlate).toBe('ABC1D23');
+    expect(session.identificationMethod).toBe('QR Code');
+    expect(session.status).toBe('Em andamento');
   });
 });

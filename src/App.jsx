@@ -225,19 +225,25 @@ function App() {
     };
   }
 
-  function buyProduct(product) {
+  function buyProduct(product, customerOverride = null) {
     const now = new Date();
-    const customer = identified?.customer || state.customers[0];
+    const customer = customerOverride || identified?.customer;
+    if (!customer) {
+      return { ok: false, message: 'Identifique um cliente no totem antes de liberar a compra.' };
+    }
+
     const sale = {
       ...product,
       id: crypto.randomUUID(),
       type: 'sale',
-      customerId: customer?.id || null,
+      customerId: customer.id,
+      customerName: customer.name,
       time: now.toLocaleTimeString('pt-BR'),
       day: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'][now.getDay()],
       createdAt: now.getTime(),
     };
     setState((current) => ({ ...current, sales: [sale, ...current.sales] }));
+    return { ok: true, message: `Produto liberado para ${customer.name}.` };
   }
 
   function resetDemoData() {
@@ -260,7 +266,16 @@ function App() {
           <Route index element={<Navigate to="portal" replace />} />
           <Route path="portal" element={<ClientPortalView state={state} />} />
           <Route path="dados" element={<ClientProfileView state={state} />} />
-          <Route path="shop" element={<ShopView buyProduct={buyProduct} latestSale={state.sales[0]} />} />
+          <Route
+            path="shop"
+            element={
+              <ShopView
+                buyProduct={buyProduct}
+                customer={state.customers[0]}
+                latestSale={state.sales.find((sale) => sale.customerId === state.customers[0]?.id)}
+              />
+            }
+          />
           <Route path="*" element={<Navigate to="/app/cliente/portal" replace />} />
         </Routes>
       </main>
@@ -313,7 +328,16 @@ function App() {
               />
             }
           />
-          <Route path="shop" element={<ShopView buyProduct={buyProduct} latestSale={state.sales[0]} />} />
+          <Route
+            path="shop"
+            element={
+              <ShopView
+                buyProduct={buyProduct}
+                identified={identified}
+                latestSale={state.sales[0]}
+              />
+            }
+          />
           <Route
             path="dashboard"
             element={<AdminView metrics={metrics} state={state} resetDemoData={resetDemoData} />}

@@ -119,7 +119,7 @@ O modo administrador mostra a operação completa:
 - Totem com placa, QR Code e facial simulados.
 - Lavagem express com progresso visual e vínculo operacional.
 - Self-service com controle de tempo, preço, consumo e registro.
-- Mini shop com venda simulada.
+- Mini shop com venda simulada vinculada ao cliente.
 - Dashboard com clientes, veículos, lavagens, self-service, receita e produtos vendidos.
 - Feed de atividades recentes.
 - Restauração dos dados demo.

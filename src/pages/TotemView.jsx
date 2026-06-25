@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { CheckCircle2, Clock, QrCode, ScanFace, Waves } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
@@ -21,6 +21,16 @@ export function TotemView({ customers, identified, findByPlate, simulateIdentifi
   );
   const [selectedProfileKey, setSelectedProfileKey] = useState(profiles[0]?.key || '');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!profiles.length) {
+      setSelectedProfileKey('');
+      return;
+    }
+    if (!profiles.some((profile) => profile.key === selectedProfileKey)) {
+      setSelectedProfileKey(profiles[0].key);
+    }
+  }, [profiles, selectedProfileKey]);
 
   function submitPlate(event) {
     event.preventDefault();
@@ -88,8 +98,12 @@ export function TotemView({ customers, identified, findByPlate, simulateIdentifi
         </div>
 
         {feedback && (
-          <div className={feedback.type === 'success' ? 'approval-panel approved' : 'approval-panel'}>
-            <strong>{feedback.type === 'success' ? 'Identificação concluída' : 'Acesso não liberado'}</strong>
+          <div
+            className={feedback.type === 'success' ? 'approval-panel approved' : 'approval-panel'}
+          >
+            <strong>
+              {feedback.type === 'success' ? 'Identificação concluída' : 'Acesso não liberado'}
+            </strong>
             <p>{feedback.message}</p>
           </div>
         )}
@@ -112,7 +126,10 @@ export function TotemView({ customers, identified, findByPlate, simulateIdentifi
                 <button className="primary-action" onClick={() => navigate('/app/admin/lavagem')}>
                   <Waves size={18} /> Ir para lavagem
                 </button>
-                <button className="primary-action" onClick={() => navigate('/app/admin/self-service')}>
+                <button
+                  className="primary-action"
+                  onClick={() => navigate('/app/admin/self-service')}
+                >
                   Ir para self-service
                 </button>
               </div>

@@ -17,7 +17,12 @@ export function findVehicleOwnerByPlate(customers, plate) {
 export function findDuplicateCustomerReason(customers, candidate) {
   const document = onlyDigits(candidate.cpf);
   const email = normalizeEmail(candidate.email);
-  const plates = new Set(candidate.vehicles.map((vehicle) => normalizePlate(vehicle.plate)));
+  const normalizedPlates = (candidate.vehicles || []).map((vehicle) =>
+    normalizePlate(vehicle.plate),
+  );
+  const plates = new Set(normalizedPlates);
+
+  if (plates.size !== normalizedPlates.length) return 'Não repita a mesma placa no cadastro.';
 
   for (const customer of customers) {
     if (onlyDigits(customer.cpf) === document) return 'CPF/CNPJ já cadastrado.';

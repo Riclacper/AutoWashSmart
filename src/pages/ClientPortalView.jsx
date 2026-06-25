@@ -1,24 +1,15 @@
 import { BadgeCheck, Car, CreditCard, QrCode, ShoppingBag, UserRound, Waves } from 'lucide-react';
 
 const qrCells = new Set([
-  0, 1, 2, 4, 5, 6,
-  7, 9, 11, 13,
-  14, 15, 16, 18, 20,
-  22, 24, 25, 27,
-  28, 30, 32, 33, 34,
-  35, 37, 39, 41,
-  42, 43, 44, 46, 48,
+  0, 1, 2, 4, 5, 6, 7, 9, 11, 13, 14, 15, 16, 18, 20, 22, 24, 25, 27, 28, 30, 32, 33, 34, 35, 37,
+  39, 41, 42, 43, 44, 46, 48,
 ]);
 
 export function ClientPortalView({ state }) {
   const customer = state.customers[0];
   const vehicle = customer?.vehicles[0];
-  const washes = state.washes
-    .filter((wash) => !wash.customerId || wash.customerId === customer?.id)
-    .slice(0, 4);
-  const sales = state.sales
-    .filter((sale) => !sale.customerId || sale.customerId === customer?.id)
-    .slice(0, 3);
+  const washes = state.washes.filter((wash) => wash.customerId === customer?.id).slice(0, 4);
+  const sales = state.sales.filter((sale) => sale.customerId === customer?.id).slice(0, 3);
 
   return (
     <section className="screen client-portal">
@@ -30,7 +21,9 @@ export function ClientPortalView({ state }) {
 
       <div className="client-hero-card">
         <div className="client-identity">
-          <span className="client-avatar"><UserRound size={28} /></span>
+          <span className="client-avatar">
+            <UserRound size={28} />
+          </span>
           <div>
             <h3>{customer?.name || 'Cliente demo'}</h3>
             <p>{customer?.email || 'cliente@autowash.local'}</p>
@@ -50,7 +43,11 @@ export function ClientPortalView({ state }) {
           <Car size={24} />
           <h3>Veículo principal</h3>
           <strong>{vehicle?.plate || 'AWS2026'}</strong>
-          <p>{vehicle ? `${vehicle.brand} ${vehicle.model} - ${vehicle.color}` : 'Toyota Corolla - Prata'}</p>
+          <p>
+            {vehicle
+              ? `${vehicle.brand} ${vehicle.model} - ${vehicle.color}`
+              : 'Toyota Corolla - Prata'}
+          </p>
         </article>
         <article className="client-card qr-card">
           <QrCode size={36} />
@@ -70,7 +67,9 @@ export function ClientPortalView({ state }) {
             washes.map((wash) => (
               <p key={wash.id}>
                 <strong>{wash.service}</strong>
-                <span>{wash.vehiclePlate || vehicle?.plate} — R$ {wash.price.toFixed(2)}</span>
+                <span>
+                  {wash.vehiclePlate || vehicle?.plate} — R$ {wash.price.toFixed(2)}
+                </span>
               </p>
             ))
           ) : (
