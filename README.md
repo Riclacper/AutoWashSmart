@@ -62,7 +62,7 @@ npm run preview
 - `/app/admin/lavagem`: lavagem express automatizada.
 - `/app/admin/self-service`: box self-service.
 - `/app/admin/shop`: mini shop.
-- `/app/admin/dashboard`: dashboard administrativo com metricas, graficos interativos, detalhamento expandido e atividades recentes.
+- `/app/admin/dashboard`: dashboard administrativo com metricas, graficos interativos, detalhamento expandido e feed de atividades recentes.
 
 ## Perfil Cliente
 
@@ -92,6 +92,7 @@ O modo administrador mostra a operacao completa:
 - Mini shop com venda simulada.
 - Dashboard com clientes, veiculos, lavagens, receita e produtos vendidos.
 - Graficos com totais, rotulos por dia/produto, valores exibidos nas barras e painel expandido ao selecionar.
+- Feed de atividades recentes com tipo, origem, dia e valor.
 - Restauracao dos dados demo.
 
 ## Dados Demo

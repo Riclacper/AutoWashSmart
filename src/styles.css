@@ -1420,25 +1420,85 @@ button:disabled:hover {
   padding: 18px;
 }
 
-.recent-list p {
-  display: flex;
-  justify-content: space-between;
+.activity-feed {
+  display: grid;
+  gap: 10px;
+}
+
+.activity-row {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) auto 56px 110px;
   gap: 12px;
-  margin-bottom: 10px;
-  color: var(--muted);
+  align-items: center;
+  min-height: 62px;
+  padding: 10px 12px;
+  border: 1px solid #edf3f6;
+  border-radius: 8px;
+  background: var(--surface-soft);
 }
 
-.recent-list p:last-child {
-  margin-bottom: 0;
+.activity-icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
 }
 
-.recent-list strong {
+.activity-icon.wash {
+  color: var(--green-2);
+  background: var(--green-soft);
+}
+
+.activity-icon.sale {
+  color: #8a5a00;
+  background: #fff3d8;
+}
+
+.activity-main {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.activity-main strong {
+  overflow: hidden;
   color: var(--ink);
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.recent-list span {
+.activity-main small,
+.activity-meta {
   color: var(--muted);
+}
+
+.activity-kind {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 28px;
+  padding: 0 10px;
+  border-radius: 999px;
+  color: #07583d;
+  background: var(--green-soft);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.activity-meta {
+  font-weight: 800;
   text-align: right;
+}
+
+.activity-price {
+  color: var(--ink);
+  text-align: right;
+}
+
+.recent-list > p {
+  margin-bottom: 0;
+  color: var(--muted);
 }
 
 .client-portal {
@@ -1706,6 +1766,16 @@ button:disabled:hover {
     height: 260px;
   }
 
+  .activity-row {
+    grid-template-columns: 42px minmax(0, 1fr) auto;
+  }
+
+  .activity-meta,
+  .activity-price {
+    grid-column: 2 / span 2;
+    text-align: left;
+  }
+
   .step-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -1808,5 +1878,20 @@ button:disabled:hover {
 
   .checkout-panel {
     grid-template-columns: 1fr;
+  }
+
+  .activity-row {
+    grid-template-columns: 38px minmax(0, 1fr);
+  }
+
+  .activity-icon {
+    width: 38px;
+    height: 38px;
+  }
+
+  .activity-kind,
+  .activity-meta,
+  .activity-price {
+    grid-column: 2;
   }
 }

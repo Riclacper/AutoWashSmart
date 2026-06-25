@@ -138,12 +138,26 @@ export function AdminView({ metrics, state, resetDemoData }) {
       <div className="recent-list">
         <h3>Ultimas atividades</h3>
         {activities.length ? (
-          activities.map((item) => (
-            <p key={item.id}>
-              <strong>{item.service || item.name}</strong>
-              <span>{item.day || 'Hoje'} - R$ {item.price.toFixed(2)}</span>
-            </p>
-          ))
+          <div className="activity-feed">
+            {activities.map((item) => {
+              const isWash = Boolean(item.service);
+              const Icon = isWash ? Waves : ShoppingBag;
+              return (
+                <article className="activity-row" key={item.id}>
+                  <span className={isWash ? 'activity-icon wash' : 'activity-icon sale'}>
+                    <Icon size={18} />
+                  </span>
+                  <div className="activity-main">
+                    <strong>{item.service || item.name}</strong>
+                    <small>{isWash ? `Lavagem concluida - ${item.entry || ''}` : `Produto liberado - ${item.time || ''}`}</small>
+                  </div>
+                  <span className="activity-kind">{isWash ? 'Lavagem' : 'Shop'}</span>
+                  <span className="activity-meta">{item.day || 'Hoje'}</span>
+                  <strong className="activity-price">R$ {item.price.toFixed(2)}</strong>
+                </article>
+              );
+            })}
+          </div>
         ) : (
           <p>Nenhuma atividade registrada ainda.</p>
         )}
