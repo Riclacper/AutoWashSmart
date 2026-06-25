@@ -13,8 +13,12 @@ const qrCells = new Set([
 export function ClientPortalView({ state }) {
   const customer = state.customers[0];
   const vehicle = customer?.vehicles[0];
-  const washes = state.washes.slice(0, 4);
-  const sales = state.sales.slice(0, 3);
+  const washes = state.washes
+    .filter((wash) => !wash.customerId || wash.customerId === customer?.id)
+    .slice(0, 4);
+  const sales = state.sales
+    .filter((sale) => !sale.customerId || sale.customerId === customer?.id)
+    .slice(0, 3);
 
   return (
     <section className="screen client-portal">
@@ -56,22 +60,36 @@ export function ClientPortalView({ state }) {
               <span className={qrCells.has(index) ? 'filled' : ''} key={index} />
             ))}
           </div>
-          <strong className="qr-token">AWS2026</strong>
+          <strong className="qr-token">{customer?.qrToken || 'QR-AWS2026'}</strong>
           <p>Use no totem para liberar a entrada.</p>
         </article>
         <article className="client-card">
           <Waves size={24} />
           <h3>Últimas lavagens</h3>
-          {washes.map((wash) => (
-            <p key={wash.id}><strong>{wash.service}</strong><span>R$ {wash.price.toFixed(2)}</span></p>
-          ))}
+          {washes.length ? (
+            washes.map((wash) => (
+              <p key={wash.id}>
+                <strong>{wash.service}</strong>
+                <span>{wash.vehiclePlate || vehicle?.plate} — R$ {wash.price.toFixed(2)}</span>
+              </p>
+            ))
+          ) : (
+            <p>Nenhuma lavagem vinculada.</p>
+          )}
         </article>
         <article className="client-card">
           <ShoppingBag size={24} />
           <h3>Compras recentes</h3>
-          {sales.map((sale) => (
-            <p key={sale.id}><strong>{sale.name}</strong><span>R$ {sale.price.toFixed(2)}</span></p>
-          ))}
+          {sales.length ? (
+            sales.map((sale) => (
+              <p key={sale.id}>
+                <strong>{sale.name}</strong>
+                <span>R$ {sale.price.toFixed(2)}</span>
+              </p>
+            ))
+          ) : (
+            <p>Nenhuma compra vinculada.</p>
+          )}
         </article>
         <article className="client-card">
           <CreditCard size={24} />
