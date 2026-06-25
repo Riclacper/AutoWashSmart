@@ -10,7 +10,7 @@ export function ClientProfileView({ state }) {
       <div className="screen-heading">
         <span className="eyebrow">Meu cadastro</span>
         <h2>Dados do cliente</h2>
-        <p>Visualizacao simulada dos dados vinculados ao perfil logado.</p>
+        <p>Visualização simulada dos dados vinculados ao perfil logado.</p>
       </div>
       <div className="profile-grid">
         <article className="profile-card">
@@ -31,7 +31,7 @@ export function ClientProfileView({ state }) {
       </div>
       <div className="profile-card vehicle-profile">
         <Car size={24} />
-        <h3>Veiculos cadastrados</h3>
+        <h3>Veículos cadastrados</h3>
         {vehicles.map((vehicle) => (
           <p key={vehicle.plate}>
             <strong>{vehicle.plate}</strong>

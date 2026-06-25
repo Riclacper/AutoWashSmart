@@ -46,7 +46,7 @@ export function ClientView({ state, addCustomer }) {
     <section className="screen split-screen">
       <div>
         <div className="screen-heading">
-          <span className="eyebrow">Area do cliente</span>
+          <span className="eyebrow">Área do cliente</span>
           <h2>Cadastro inteligente</h2>
         </div>
         <form className="form-panel" onSubmit={submit}>
@@ -72,7 +72,7 @@ export function ClientView({ state, addCustomer }) {
               Adicionar autorizado
             </button>
           )}
-          <h3>Veiculo</h3>
+          <h3>Veículo</h3>
           <div className="form-grid">
             <Field label="Placa" value={form.vehicles[0].plate} onChange={(value) => updateVehicle('plate', value)} required />
             <Field label="Marca" value={form.vehicles[0].brand} onChange={(value) => updateVehicle('brand', value)} required />

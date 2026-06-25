@@ -2,18 +2,18 @@ import { BadgeCheck, Car, ChevronRight, Droplets, Sparkles, SprayCan } from 'luc
 import { useNavigate } from 'react-router-dom';
 
 const homeTiles = [
-  ['Como funciona', 'Identifique o veiculo, escolha o servico e acompanhe a lavagem em tempo real.'],
-  ['Servicos', 'Express, Premium, SUV Care e self-service com consumo simulado.'],
-  ['Planos', 'Assinaturas e lavagens avulsas prontas para demonstracao comercial.'],
-  ['Beneficios', 'Menos fila, cobranca automatica e operacao acompanhada por indicadores.'],
-  ['Diferenciais', 'Totem, dashboard, mini shop e persistencia local no navegador.'],
-  ['Contato', 'Fluxo pronto para apresentacao comercial sem depender de integracoes externas.'],
+  ['Como funciona', 'Identifique o veículo, escolha o serviço e acompanhe a lavagem em tempo real.'],
+  ['Serviços', 'Express, Premium, SUV Care e self-service com consumo simulado.'],
+  ['Planos', 'Assinaturas e lavagens avulsas prontas para demonstração comercial.'],
+  ['Benefícios', 'Menos fila, cobrança automática e operação acompanhada por indicadores.'],
+  ['Diferenciais', 'Totem, dashboard, mini shop e persistência local no navegador.'],
+  ['Contato', 'Fluxo pronto para apresentação comercial sem depender de integrações externas.'],
 ];
 
 const demoSteps = [
-  ['1', 'Cadastrar cliente', 'Registre cliente, autorizados e veiculo.'],
+  ['1', 'Cadastrar cliente', 'Registre cliente, autorizados e veículo.'],
   ['2', 'Liberar no totem', 'Use AWS2026, QR Code ou facial.'],
-  ['3', 'Executar lavagem', 'Escolha o servico e acompanhe etapas.'],
+  ['3', 'Executar lavagem', 'Escolha o serviço e acompanhe etapas.'],
   ['4', 'Conferir painel', 'Veja receita, vendas e atividades.'],
 ];
 
@@ -27,8 +27,8 @@ export function HomeView() {
           <span className="eyebrow">Lava a jato inteligente</span>
           <h1>AutoWash Smart</h1>
           <p>
-            Um prototipo navegavel para uma operacao automatizada, com entrada digital,
-            lavagem guiada, cobranca simulada, self-service e mini shop.
+            Um protótipo navegável para uma operação automatizada, com entrada digital,
+            lavagem guiada, cobrança simulada, self-service e mini shop.
           </p>
           <div className="hero-actions">
             <button className="primary-action" onClick={() => navigate('/app/admin/totem')}>
@@ -52,7 +52,7 @@ export function HomeView() {
           <div className="status-board">
             <BadgeCheck size={22} />
             <strong>Plano ativo</strong>
-            <small>Servico liberado</small>
+            <small>Serviço liberado</small>
           </div>
         </div>
       </div>
@@ -66,7 +66,7 @@ export function HomeView() {
       </div>
       <div className="demo-flow">
         <div className="screen-heading">
-          <span className="eyebrow">Roteiro de demonstracao</span>
+          <span className="eyebrow">Roteiro de demonstração</span>
           <h2>Fluxo pronto para apresentar</h2>
         </div>
         <div className="demo-step-grid">

@@ -15,7 +15,7 @@ export function TotemView({ identified, findByPlate, simulateIdentification }) {
     <section className="screen totem-screen">
       <div className="screen-heading centered">
         <span className="eyebrow">Totem de entrada</span>
-        <h2>Identificacao do veiculo</h2>
+        <h2>Identificação do veículo</h2>
       </div>
       <div className="totem-device">
         <div className="totem-camera"><ScanFace size={58} /></div>
@@ -36,11 +36,11 @@ export function TotemView({ identified, findByPlate, simulateIdentification }) {
           {identified ? (
             <>
               <CheckCircle2 size={34} />
-              <h3>Servico liberado</h3>
+              <h3>Serviço liberado</h3>
               <p>{identified.customer.name} - {identified.vehicle.plate}</p>
               <div className="approval-grid">
                 <span>Cliente encontrado</span>
-                <span>Veiculo encontrado</span>
+                <span>Veículo encontrado</span>
                 <span>Plano ativo</span>
                 <span>{identified.method}</span>
               </div>
@@ -49,8 +49,8 @@ export function TotemView({ identified, findByPlate, simulateIdentification }) {
           ) : (
             <>
               <Clock size={34} />
-              <h3>Aguardando identificacao</h3>
-              <p>Use a placa AWS2026, uma placa cadastrada ou acione uma simulacao.</p>
+              <h3>Aguardando identificação</h3>
+              <p>Use a placa AWS2026, uma placa cadastrada ou acione uma simulação.</p>
             </>
           )}
         </div>

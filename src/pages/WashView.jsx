@@ -60,7 +60,7 @@ function CheckoutPanel({ checkout }) {
       </div>
       <div className="checkout-times">
         <span>Entrada: {checkout.entry}</span>
-        <span>Saida: {checkout.exit}</span>
+        <span>Saída: {checkout.exit}</span>
       </div>
     </article>
   );

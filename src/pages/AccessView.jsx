@@ -10,25 +10,25 @@ export function AccessView() {
         <div className="screen-heading centered">
           <span className="eyebrow">Acesso demonstrativo</span>
           <h1>Escolha como deseja entrar</h1>
-          <p>Use perfis simulados para visualizar a experiencia do cliente e do administrador.</p>
+          <p>Use perfis simulados para visualizar a experiência do cliente e do administrador.</p>
         </div>
         <div className="access-grid">
           <button className="access-card" onClick={() => navigate('/app/cliente/portal')}>
             <span><UserRound size={28} /></span>
             <h2>Cliente</h2>
-            <p>Area com veiculos, plano, QR Code, historico, compras e recibos simulados.</p>
+            <p>Área com veículos, plano, QR Code, histórico, compras e recibos simulados.</p>
             <strong>Entrar como cliente</strong>
           </button>
           <button className="access-card admin-access" onClick={() => navigate('/app/admin')}>
             <span><ShieldCheck size={28} /></span>
             <h2>Administrador</h2>
-            <p>Operacao completa com cadastros, totem, lavagem, loja, self-service e dashboard.</p>
+            <p>Operação completa com cadastros, totem, lavagem, loja, self-service e dashboard.</p>
             <strong>Entrar como admin</strong>
           </button>
         </div>
         <div className="access-summary">
           <span><Car size={18} /> Placa demo: AWS2026</span>
-          <span><BarChart3 size={18} /> Dados demo restauraveis no painel admin</span>
+          <span><BarChart3 size={18} /> Dados demo restauráveis no painel admin</span>
         </div>
       </section>
     </main>

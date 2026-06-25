@@ -19,24 +19,24 @@ import landingHero from '../assets/landing-hero.jpg';
 const modules = [
   ['Totem de entrada', 'Placa, QR Code e reconhecimento facial simulados.', ScanFace],
   ['Lavagem express', 'Etapas visuais, progresso e checkout automatizado.', Waves],
-  ['Self-service', 'Controle de tempo, consumo e servicos liberados.', Gauge],
-  ['Mini shop', 'Venda autonoma de produtos automotivos.', ShoppingBag],
-  ['Clientes e frota', 'Cadastro de veiculos, autorizados e planos.', Users],
-  ['Dashboard', 'Indicadores de operacao, receita e atividades.', BarChart3],
+  ['Self-service', 'Controle de tempo, consumo e serviços liberados.', Gauge],
+  ['Mini shop', 'Venda autônoma de produtos automotivos.', ShoppingBag],
+  ['Clientes e frota', 'Cadastro de veículos, autorizados e planos.', Users],
+  ['Dashboard', 'Indicadores de operação, receita e atividades.', BarChart3],
 ];
 
 const benefits = [
   'Reduz fila e atendimento manual na entrada',
-  'Padroniza a jornada do cliente e da operacao',
-  'Demonstra cobranca automatica sem integracoes pagas',
-  'Prepara evolucao para assinaturas, franquias e Supabase',
+  'Padroniza a jornada do cliente e da operação',
+  'Demonstra cobrança automática sem integrações pagas',
+  'Prepara evolução para assinaturas, franquias e Supabase',
 ];
 
 const demoFlow = [
   ['01', 'Cliente identificado', 'Use a placa AWS2026 ou simule QR/facial no totem.'],
-  ['02', 'Servico liberado', 'Escolha Express, Premium ou SUV Care e acompanhe as etapas.'],
-  ['03', 'Pagamento simulado', 'A lavagem concluida entra automaticamente no painel.'],
-  ['04', 'Gestao operacional', 'Revise receita, vendas, clientes e atividades recentes.'],
+  ['02', 'Serviço liberado', 'Escolha Express, Premium ou SUV Care e acompanhe as etapas.'],
+  ['03', 'Pagamento simulado', 'A lavagem concluída entra automaticamente no painel.'],
+  ['04', 'Gestão operacional', 'Revise receita, vendas, clientes e atividades recentes.'],
 ];
 
 export function LandingView() {
@@ -45,7 +45,7 @@ export function LandingView() {
   return (
     <main className="landing-page">
       <section className="landing-hero">
-        <img src={landingHero} alt="AutoWash Smart em operacao automatizada" />
+        <img src={landingHero} alt="AutoWash Smart em operação automatizada" />
         <div className="landing-overlay" />
         <nav className="landing-nav" aria-label="AutoWash Smart">
           <div className="landing-brand">
@@ -58,14 +58,14 @@ export function LandingView() {
         </nav>
         <div className="landing-content">
           <span className="eyebrow">MVP comercial para lava a jato inteligente</span>
-          <h1>Automatize entrada, lavagem, cobranca e gestao em uma experiencia unica.</h1>
+          <h1>Automatize entrada, lavagem, cobrança e gestão em uma experiência única.</h1>
           <p>
-            Prototipo navegavel para apresentar uma operacao moderna de lava a jato com totem,
+            Protótipo navegável para apresentar uma operação moderna de lava a jato com totem,
             reconhecimento simulado, planos, self-service, mini shop e dashboard administrativo.
           </p>
           <div className="landing-actions">
             <button className="primary-action" onClick={() => navigate('/app')}>
-              Acessar demonstracao <ArrowRight size={18} />
+              Acessar demonstração <ArrowRight size={18} />
             </button>
             <button className="secondary-action" onClick={() => navigate('/app/admin/dashboard')}>
               Ver indicadores
@@ -84,8 +84,8 @@ export function LandingView() {
           <span className="eyebrow">Para interessados</span>
           <h2>O que o sistema demonstra</h2>
           <p>
-            Uma visao completa do produto antes de qualquer investimento em sensores,
-            catracas, pagamentos ou integracoes externas.
+            Uma visão completa do produto antes de qualquer investimento em sensores,
+            catracas, pagamentos ou integrações externas.
           </p>
         </div>
         <div className="landing-module-grid">
@@ -101,7 +101,7 @@ export function LandingView() {
 
       <section className="landing-band">
         <div>
-          <span className="eyebrow">Valor para operacao</span>
+          <span className="eyebrow">Valor para operação</span>
           <h2>Mais controle sem aumentar complexidade.</h2>
         </div>
         <div className="benefit-list">
@@ -134,7 +134,7 @@ export function LandingView() {
           <p>Entre na plataforma com dados demo e percorra o fluxo completo.</p>
         </div>
         <button className="primary-action" onClick={() => navigate('/app/admin/totem')}>
-          Comecar pelo totem <Sparkles size={18} />
+          Começar pelo totem <Sparkles size={18} />
         </button>
       </section>
     </main>

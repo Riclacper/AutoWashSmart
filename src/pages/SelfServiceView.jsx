@@ -39,7 +39,7 @@ export function SelfServiceView({ selfMinutes, setSelfMinutes, selfRemaining, se
         </div>
         <p>Consumo simulado: {selfActive ? Math.max(1, Math.round((totalSeconds - selfRemaining) * 0.45)) : 0} L</p>
         <div className="tag-list">
-          <span>Agua pressurizada</span>
+          <span>Água pressurizada</span>
           <span>Espuma</span>
           <span>Aspirador</span>
         </div>

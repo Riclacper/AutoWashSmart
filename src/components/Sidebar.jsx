@@ -13,7 +13,7 @@ import {
 
 const navItems = {
   client: [
-    ['/app/cliente/portal', Home, 'Inicio'],
+    ['/app/cliente/portal', Home, 'Início'],
     ['/app/cliente/dados', UserRound, 'Meu cadastro'],
     ['/app/cliente/shop', ShoppingBag, 'Compras'],
   ],
@@ -37,7 +37,7 @@ export function Sidebar({ mode }) {
         <span className="brand-icon"><Droplets size={24} /></span>
         <span>
           <strong>AutoWash</strong>
-          <small>{mode === 'client' ? 'Portal do cliente' : 'Operacao admin'}</small>
+          <small>{mode === 'client' ? 'Portal do cliente' : 'Operação admin'}</small>
         </span>
       </NavLink>
       <NavLink className="mode-switch" to="/">

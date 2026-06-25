@@ -1,10 +1,10 @@
 export const serviceOptions = [
-  { name: 'Express', price: 39.9, duration: '12 min', detail: 'Lavagem externa com secagem rapida' },
-  { name: 'Premium', price: 69.9, duration: '20 min', detail: 'Espuma ativa, cera liquida e acabamento' },
-  { name: 'SUV Care', price: 89.9, duration: '25 min', detail: 'Lavagem completa para veiculos maiores' },
+  { name: 'Express', price: 39.9, duration: '12 min', detail: 'Lavagem externa com secagem rápida' },
+  { name: 'Premium', price: 69.9, duration: '20 min', detail: 'Espuma ativa, cera líquida e acabamento' },
+  { name: 'SUV Care', price: 89.9, duration: '25 min', detail: 'Lavagem completa para veículos maiores' },
 ];
 
-export const washSteps = ['Entrada', 'Pre-lavagem', 'Espuma', 'Enxague', 'Secagem', 'Finalizacao'];
+export const washSteps = ['Entrada', 'Pré-lavagem', 'Espuma', 'Enxágue', 'Secagem', 'Finalização'];
 
 export const products = [
   { name: 'Shampoo', price: 18.9 },
@@ -23,7 +23,7 @@ export function demoCustomer() {
     email: 'marina@autowash.local',
     phone: '(81) 99999-0000',
     plan: 'Smart Plus',
-    authorized: [{ name: 'Rafael Costa', relation: 'Familia' }],
+    authorized: [{ name: 'Rafael Costa', relation: 'Família' }],
     vehicles: [{ plate: 'AWS2026', brand: 'Toyota', model: 'Corolla', color: 'Prata', category: 'Sedan' }],
   };
 }
@@ -40,7 +40,7 @@ export const demoState = {
       plan: 'Frota',
       authorized: [
         { name: 'Lucas Menezes', relation: 'Gestor' },
-        { name: 'Ana Barros', relation: 'Operacao' },
+        { name: 'Ana Barros', relation: 'Operação' },
       ],
       vehicles: [
         { plate: 'RPR4E22', brand: 'Jeep', model: 'Compass', color: 'Preto', category: 'SUV' },

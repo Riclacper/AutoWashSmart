@@ -30,7 +30,7 @@ export function AdminView({ metrics, state, resetDemoData }) {
   const [selectedChartKey, setSelectedChartKey] = useState('revenue');
   const cards = [
     ['Clientes cadastrados', metrics.customers, Users],
-    ['Veiculos cadastrados', metrics.vehicles, Car],
+    ['Veículos cadastrados', metrics.vehicles, Car],
     ['Lavagens realizadas', metrics.washes, Waves],
     ['Receita simulada', `R$ ${metrics.revenue.toFixed(2)}`, CreditCard],
     ['Produtos vendidos', metrics.products, ShoppingBag],
@@ -90,7 +90,7 @@ export function AdminView({ metrics, state, resetDemoData }) {
     <section className="screen">
       <div className="screen-heading">
         <span className="eyebrow">Dashboard administrativo</span>
-        <h2>Indicadores da operacao</h2>
+        <h2>Indicadores da operação</h2>
         <button className="text-action compact-action" onClick={resetDemoData}>Restaurar dados demo</button>
       </div>
       <div className="metric-grid">
@@ -136,7 +136,7 @@ export function AdminView({ metrics, state, resetDemoData }) {
         </div>
       </div>
       <div className="recent-list">
-        <h3>Ultimas atividades</h3>
+        <h3>Últimas atividades</h3>
         {activities.length ? (
           <div className="activity-feed">
             {activities.map((item) => {
@@ -149,7 +149,7 @@ export function AdminView({ metrics, state, resetDemoData }) {
                   </span>
                   <div className="activity-main">
                     <strong>{item.service || item.name}</strong>
-                    <small>{isWash ? `Lavagem concluida - ${item.entry || ''}` : `Produto liberado - ${item.time || ''}`}</small>
+                    <small>{isWash ? `Lavagem concluída - ${item.entry || ''}` : `Produto liberado - ${item.time || ''}`}</small>
                   </div>
                   <span className="activity-kind">{isWash ? 'Lavagem' : 'Shop'}</span>
                   <span className="activity-meta">{item.day || 'Hoje'}</span>

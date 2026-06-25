@@ -19,9 +19,9 @@ export function ClientPortalView({ state }) {
   return (
     <section className="screen client-portal">
       <div className="screen-heading">
-        <span className="eyebrow">Area do cliente</span>
+        <span className="eyebrow">Área do cliente</span>
         <h2>Minha AutoWash</h2>
-        <p>Acompanhe plano, veiculos, lavagens e compras vinculadas ao seu cadastro.</p>
+        <p>Acompanhe plano, veículos, lavagens e compras vinculadas ao seu cadastro.</p>
       </div>
 
       <div className="client-hero-card">
@@ -44,7 +44,7 @@ export function ClientPortalView({ state }) {
       <div className="client-grid">
         <article className="client-card">
           <Car size={24} />
-          <h3>Veiculo principal</h3>
+          <h3>Veículo principal</h3>
           <strong>{vehicle?.plate || 'AWS2026'}</strong>
           <p>{vehicle ? `${vehicle.brand} ${vehicle.model} - ${vehicle.color}` : 'Toyota Corolla - Prata'}</p>
         </article>
@@ -61,7 +61,7 @@ export function ClientPortalView({ state }) {
         </article>
         <article className="client-card">
           <Waves size={24} />
-          <h3>Ultimas lavagens</h3>
+          <h3>Últimas lavagens</h3>
           {washes.map((wash) => (
             <p key={wash.id}><strong>{wash.service}</strong><span>R$ {wash.price.toFixed(2)}</span></p>
           ))}
@@ -77,7 +77,7 @@ export function ClientPortalView({ state }) {
           <CreditCard size={24} />
           <h3>Pagamentos</h3>
           <strong>Em dia</strong>
-          <p>Recibos e cobrancas simuladas disponiveis para demonstracao.</p>
+          <p>Recibos e cobranças simuladas disponíveis para demonstração.</p>
         </article>
       </div>
     </section>

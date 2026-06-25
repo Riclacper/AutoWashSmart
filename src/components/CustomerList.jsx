@@ -6,7 +6,7 @@ export function CustomerList({ customers }) {
 
   return (
     <aside className="side-panel">
-      <h3>Historico</h3>
+      <h3>Histórico</h3>
       {list.map((customer) => (
         <article className="customer-card" key={customer.id}>
           <div>
