@@ -136,6 +136,7 @@ src/
 - Dashboard administrativo com gráficos informativos, rotulados e expansível por clique/toque.
 - Mini shop com imagens locais para os produtos automotivos.
 - Refinamento visual do roteiro sugerido e CTA da landing demonstrativa.
+- Ajuste responsivo do menu da plataforma em smartphones.
 
 ## Diretriz de Manutenção
 
