@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Car, CreditCard, ShoppingBag, Users, Waves } from 'lucide-react';
 import { SimChart } from '../components/SimChart.jsx';
 
@@ -26,6 +27,7 @@ function currency(value) {
 }
 
 export function AdminView({ metrics, state, resetDemoData }) {
+  const [selectedChartKey, setSelectedChartKey] = useState('revenue');
   const cards = [
     ['Clientes cadastrados', metrics.customers, Users],
     ['Veiculos cadastrados', metrics.vehicles, Car],
@@ -43,15 +45,46 @@ export function AdminView({ metrics, state, resetDemoData }) {
     label: day,
     value: washCounts[index],
     display: `${washCounts[index]} lav.`,
+    detail: `${washCounts[index]} lavagem(ns) registradas em ${day}`,
   }));
   const revenueByDay = weekDays.map((day, index) => ({
     label: day,
     value: revenueTotals[index],
     display: currency(revenueTotals[index]),
+    detail: `${currency(revenueTotals[index])} em lavagens e produtos em ${day}`,
   }));
   const productsSold = productTotals.length
-    ? productTotals.map(([name, total]) => ({ label: name, value: total, display: `${total} un.` }))
-    : [{ label: 'Sem vendas', value: 0, display: '0 un.' }];
+    ? productTotals.map(([name, total]) => ({
+        label: name,
+        value: total,
+        display: `${total} un.`,
+        detail: `${total} unidade(s) vendidas de ${name}`,
+      }))
+    : [{ label: 'Sem vendas', value: 0, display: '0 un.', detail: 'Nenhum produto vendido ainda' }];
+  const charts = [
+    {
+      key: 'washes',
+      title: 'Lavagens por dia',
+      points: washesByDay,
+      summary: `${metrics.washes} lavagens`,
+      description: 'Volume de atendimentos registrados por dia da semana.',
+    },
+    {
+      key: 'revenue',
+      title: 'Receita por dia',
+      points: revenueByDay,
+      summary: currency(metrics.revenue),
+      description: 'Receita somada de lavagens e produtos vendidos por dia.',
+    },
+    {
+      key: 'products',
+      title: 'Produtos vendidos',
+      points: productsSold,
+      summary: `${metrics.products} itens`,
+      description: 'Ranking dos produtos vendidos no mini shop.',
+    },
+  ];
+  const selectedChart = charts.find((chart) => chart.key === selectedChartKey) || charts[0];
 
   return (
     <section className="screen">
@@ -70,9 +103,37 @@ export function AdminView({ metrics, state, resetDemoData }) {
         ))}
       </div>
       <div className="chart-grid">
-        <SimChart title="Lavagens por dia" points={washesByDay} summary={`${metrics.washes} lavagens`} />
-        <SimChart title="Receita por dia" points={revenueByDay} summary={currency(metrics.revenue)} />
-        <SimChart title="Produtos vendidos" points={productsSold} summary={`${metrics.products} itens`} />
+        {charts.map((chart) => (
+          <SimChart
+            key={chart.key}
+            title={chart.title}
+            points={chart.points}
+            summary={chart.summary}
+            selected={selectedChart.key === chart.key}
+            onSelect={() => setSelectedChartKey(chart.key)}
+          />
+        ))}
+      </div>
+      <div className="expanded-chart-panel">
+        <div className="expanded-chart-copy">
+          <span className="eyebrow">Detalhamento</span>
+          <h3>{selectedChart.title}</h3>
+          <p>{selectedChart.description}</p>
+        </div>
+        <SimChart
+          title={selectedChart.title}
+          points={selectedChart.points}
+          summary={selectedChart.summary}
+          expanded
+        />
+        <div className="chart-detail-list">
+          {selectedChart.points.map((point) => (
+            <p key={point.label}>
+              <strong>{point.label}</strong>
+              <span>{point.detail}</span>
+            </p>
+          ))}
+        </div>
       </div>
       <div className="recent-list">
         <h3>Ultimas atividades</h3>
