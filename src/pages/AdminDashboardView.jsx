@@ -16,6 +16,33 @@ function currency(value) {
   return `R$ ${value.toFixed(2)}`;
 }
 
+function formatChartValue(chart, value) {
+  if (chart.key === 'revenue') return currency(value);
+  const displayValue = Number.isInteger(value) ? value : value.toFixed(1);
+  if (chart.key === 'washes') return `${displayValue} lavagem(ns)`;
+  return `${displayValue} produto(s)`;
+}
+
+function buildChartAnalysis(chart) {
+  const total = chart.points.reduce((sum, point) => sum + point.value, 0);
+  const activePoints = chart.points.filter((point) => point.value > 0);
+  const bestPoint = chart.points.reduce(
+    (best, point) => (point.value > best.value ? point : best),
+    chart.points[0],
+  );
+  const quietPoint = activePoints.reduce(
+    (quiet, point) => (point.value < quiet.value ? point : quiet),
+    activePoints[0] || chart.points[0],
+  );
+
+  return {
+    total,
+    average: total / chart.points.length,
+    bestPoint,
+    quietPoint,
+  };
+}
+
 export function AdminView({ metrics, state, resetDemoData }) {
   const [selectedChartKey, setSelectedChartKey] = useState('revenue');
   const payments = state.payments || [];
@@ -71,6 +98,7 @@ export function AdminView({ metrics, state, resetDemoData }) {
     },
   ];
   const selectedChart = charts.find((chart) => chart.key === selectedChartKey) || charts[0];
+  const selectedAnalysis = buildChartAnalysis(selectedChart);
   const activities = [...operations]
     .sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0))
     .slice(0, 8);
@@ -114,12 +142,34 @@ export function AdminView({ metrics, state, resetDemoData }) {
           <h3>{selectedChart.title}</h3>
           <p>{selectedChart.description}</p>
         </div>
-        <SimChart
-          title={selectedChart.title}
-          points={selectedChart.points}
-          summary={selectedChart.summary}
-          expanded
-        />
+        <div className="detail-metric-grid">
+          <article>
+            <span>Total no período</span>
+            <strong>{formatChartValue(selectedChart, selectedAnalysis.total)}</strong>
+          </article>
+          <article>
+            <span>Média diária</span>
+            <strong>{formatChartValue(selectedChart, selectedAnalysis.average)}</strong>
+          </article>
+          <article>
+            <span>Melhor dia</span>
+            <strong>{selectedAnalysis.bestPoint.label}</strong>
+            <small>{formatChartValue(selectedChart, selectedAnalysis.bestPoint.value)}</small>
+          </article>
+          <article>
+            <span>Menor dia com movimento</span>
+            <strong>{selectedAnalysis.quietPoint.label}</strong>
+            <small>{formatChartValue(selectedChart, selectedAnalysis.quietPoint.value)}</small>
+          </article>
+        </div>
+        <div className="chart-detail-list">
+          {selectedChart.points.map((point) => (
+            <p key={point.label}>
+              <strong>{point.label}</strong>
+              <span>{formatChartValue(selectedChart, point.value)}</span>
+            </p>
+          ))}
+        </div>
       </div>
 
       <div className="recent-list">
