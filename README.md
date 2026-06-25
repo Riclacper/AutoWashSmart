@@ -154,6 +154,21 @@ src/
 tests/
 ```
 
+## Histórico de Evolução
+
+- MVP inicial com telas de Home, Cliente, Totem, Lavagem, Self-service, Shop e Admin.
+- Refatoração para React Router e componentes/páginas separadas.
+- Publicação em repositório privado no GitHub.
+- Melhorias de confiabilidade no fluxo de lavagem e busca por placa demo.
+- Refinamento visual da identidade.
+- Dados demo e dashboard baseado nos dados locais.
+- Landing demonstrativa pública antes da plataforma.
+- Perfis simulados de cliente e administrador.
+- Dashboard administrativo com gráficos informativos, rotulados e expansível por clique/toque.
+- Mini shop com imagens locais para os produtos automotivos.
+- Refinamento visual do roteiro sugerido e CTA da landing demonstrativa.
+- Ajuste responsivo do menu da plataforma em smartphones.
+
 ## Próxima Etapa
 
 A Fase 2 transformará o protótipo local em uma aplicação conectada:
