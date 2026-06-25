@@ -101,7 +101,7 @@ export function AdminView({ metrics, state, resetDemoData }) {
   const selectedAnalysis = buildChartAnalysis(selectedChart);
   const activities = [...operations]
     .sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0))
-    .slice(0, 8);
+    .slice(0, 5);
 
   return (
     <section className="screen">
@@ -164,10 +164,10 @@ export function AdminView({ metrics, state, resetDemoData }) {
         </div>
         <div className="chart-detail-list">
           {selectedChart.points.map((point) => (
-            <p key={point.label}>
+            <span className="day-detail" key={point.label}>
               <strong>{point.label}</strong>
               <span>{formatChartValue(selectedChart, point.value)}</span>
-            </p>
+            </span>
           ))}
         </div>
       </div>
