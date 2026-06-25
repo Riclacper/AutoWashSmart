@@ -1,3 +1,10 @@
+import aromatizadorImage from '../assets/products/aromatizador.png';
+import ceraImage from '../assets/products/cera.png';
+import limpaVidroImage from '../assets/products/limpa-vidro.png';
+import microfibraImage from '../assets/products/microfibra.png';
+import shampooImage from '../assets/products/shampoo.png';
+import siliconeImage from '../assets/products/silicone.png';
+
 export const serviceOptions = [
   { name: 'Express', price: 39.9, duration: '12 min', detail: 'Lavagem externa com secagem rápida' },
   { name: 'Premium', price: 69.9, duration: '20 min', detail: 'Espuma ativa, cera líquida e acabamento' },
@@ -7,12 +14,12 @@ export const serviceOptions = [
 export const washSteps = ['Entrada', 'Pré-lavagem', 'Espuma', 'Enxágue', 'Secagem', 'Finalização'];
 
 export const products = [
-  { name: 'Shampoo', price: 18.9 },
-  { name: 'Cera', price: 24.9 },
-  { name: 'Microfibra', price: 14.9 },
-  { name: 'Aromatizador', price: 12.9 },
-  { name: 'Silicone', price: 19.9 },
-  { name: 'Limpa vidro', price: 16.9 },
+  { name: 'Shampoo', price: 18.9, image: shampooImage, imageAlt: 'Frasco de shampoo automotivo' },
+  { name: 'Cera', price: 24.9, image: ceraImage, imageAlt: 'Pote de cera automotiva' },
+  { name: 'Microfibra', price: 14.9, image: microfibraImage, imageAlt: 'Toalha de microfibra automotiva' },
+  { name: 'Aromatizador', price: 12.9, image: aromatizadorImage, imageAlt: 'Aromatizador automotivo' },
+  { name: 'Silicone', price: 19.9, image: siliconeImage, imageAlt: 'Frasco de silicone automotivo' },
+  { name: 'Limpa vidro', price: 16.9, image: limpaVidroImage, imageAlt: 'Frasco de limpa vidro automotivo' },
 ];
 
 export function demoCustomer() {

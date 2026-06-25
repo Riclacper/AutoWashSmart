@@ -11,7 +11,13 @@ export function ShopView({ buyProduct, latestSale }) {
       <div className="product-grid">
         {products.map((product) => (
           <article className="product-card" key={product.name}>
-            <PackageCheck size={32} />
+            <div className="product-image">
+              {product.image ? (
+                <img src={product.image} alt={product.imageAlt} />
+              ) : (
+                <PackageCheck size={42} />
+              )}
+            </div>
             <h3>{product.name}</h3>
             <strong>R$ {product.price.toFixed(2)}</strong>
             <button onClick={() => buyProduct(product)}>Pagar</button>

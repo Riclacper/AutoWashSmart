@@ -134,6 +134,7 @@ src/
 - Landing demonstrativa pública antes da plataforma.
 - Perfis simulados de cliente e administrador.
 - Dashboard administrativo com gráficos informativos, rotulados e expansível por clique/toque.
+- Mini shop com imagens locais para os produtos automotivos.
 
 ## Diretriz de Manutenção
 
