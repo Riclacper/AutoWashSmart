@@ -93,7 +93,9 @@ a {
 .access-logo img {
   width: min(430px, 84vw);
   height: auto;
-  filter: drop-shadow(0 18px 36px rgba(0, 0, 0, 0.22));
+  filter:
+    drop-shadow(0 18px 36px rgba(0, 0, 0, 0.34))
+    drop-shadow(0 0 22px rgba(18, 201, 135, 0.2));
 }
 
 .access-panel .screen-heading h1 {
@@ -237,7 +239,9 @@ a {
   display: block;
   width: min(360px, 52vw);
   height: auto;
-  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.2));
+  filter:
+    drop-shadow(0 16px 30px rgba(0, 0, 0, 0.36))
+    drop-shadow(0 0 18px rgba(36, 213, 255, 0.2));
 }
 
 .landing-nav button {
