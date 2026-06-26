@@ -1,5 +1,5 @@
 import { BarChart3, Car, ShieldCheck, UserRound } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logoFull from '../assets/logo-full.svg';
 
 export function AccessView() {
@@ -8,9 +8,9 @@ export function AccessView() {
   return (
     <main className="access-page">
       <section className="access-panel">
-        <div className="access-logo">
+        <Link className="access-logo" to="/" aria-label="Voltar para a página inicial">
           <img src={logoFull} alt="AutoWash Smart" />
-        </div>
+        </Link>
         <div className="screen-heading centered">
           <span className="eyebrow">Acesso demonstrativo</span>
           <h1>Escolha como deseja entrar</h1>
