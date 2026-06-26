@@ -1,0 +1,22 @@
+<svg width="520" height="140" viewBox="0 0 520 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g filter="url(#shadow)">
+    <rect x="4" y="12" width="112" height="112" rx="28" fill="#0F2030"/>
+    <path d="M25 77.8C34.8 68.7 44.7 64.9 54.6 66.2C66.9 67.9 72.8 77.3 85.2 77.1C90.7 77 95.6 75 100.5 71.7V87.9C91.3 93.6 81.8 95.8 72.1 94.3C60.4 92.5 54.4 84.2 43.6 84.1C37.3 84 31.1 86.6 25 91.9V77.8Z" fill="#12C987"/>
+    <path d="M31 70.2C34.8 67.2 39.5 65.3 45.2 64.5L49.9 53.6C51.7 49.6 55.6 47 60 47H70.5C74.9 47 78.8 49.6 80.6 53.6L85.3 64.5C91 65.4 95.9 67.3 100.1 70.2L97.6 82.8H88.5L85.8 78.4H45.8L43.1 82.8H33.5L31 70.2Z" fill="#E9FBF5"/>
+    <path d="M53.7 62.4L56.9 55.2C57.5 53.9 58.8 53 60.2 53H70.2C71.7 53 73 53.9 73.6 55.2L76.7 62.4H53.7Z" fill="#0F2030"/>
+    <path d="M41.2 72.3C41.2 70.2 42.9 68.5 45.1 68.5H50.6C52.8 68.5 54.6 70.2 54.6 72.3C54.6 74.4 52.8 76.2 50.6 76.2H45.1C42.9 76.2 41.2 74.4 41.2 72.3Z" fill="#0F2030"/>
+    <path d="M76 72.3C76 70.2 77.8 68.5 80 68.5H85.5C87.6 68.5 89.4 70.2 89.4 72.3C89.4 74.4 87.6 76.2 85.5 76.2H80C77.8 76.2 76 74.4 76 72.3Z" fill="#0F2030"/>
+    <path d="M56.6 83.6H74.2" stroke="#0F2030" stroke-width="4" stroke-linecap="round"/>
+    <path d="M88.8 31C88.8 37.7 83.4 43.2 76.6 43.2C83.4 43.2 88.8 48.6 88.8 55.4C88.8 48.6 94.3 43.2 101 43.2C94.3 43.2 88.8 37.7 88.8 31Z" fill="#24D5FF"/>
+  </g>
+  <text x="142" y="68" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-size="40" font-weight="900">AutoWash</text>
+  <text x="144" y="103" fill="#12C987" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="900">Smart</text>
+  <path d="M382 92C402 81 421 79 439 86C457 93 474 92 492 80" stroke="#24D5FF" stroke-width="8" stroke-linecap="round"/>
+  <path d="M382 109C405 96 426 94 445 102C462 109 479 108 497 96" stroke="#12C987" stroke-width="8" stroke-linecap="round"/>
+  <defs>
+    <filter id="shadow" x="-8" y="0" width="136" height="136" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="14" stdDeviation="12" flood-color="#000000" flood-opacity="0.3"/>
+      <feDropShadow dx="0" dy="0" stdDeviation="10" flood-color="#12C987" flood-opacity="0.16"/>
+    </filter>
+  </defs>
+</svg>

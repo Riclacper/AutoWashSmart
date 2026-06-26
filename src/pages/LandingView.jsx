@@ -15,7 +15,7 @@ import {
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import landingHero from '../assets/landing-hero.jpg';
-import logoFull from '../assets/logo-full.png';
+import logoFull from '../assets/logo-full.svg';
 
 const modules = [
   ['Totem de entrada', 'Placa, QR Code e reconhecimento facial simulados.', ScanFace],

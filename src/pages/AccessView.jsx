@@ -1,6 +1,6 @@
 import { BarChart3, Car, ShieldCheck, UserRound } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import logoFull from '../assets/logo-full.png';
+import logoFull from '../assets/logo-full.svg';
 
 export function AccessView() {
   const navigate = useNavigate();
