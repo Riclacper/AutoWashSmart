@@ -4,6 +4,10 @@ MVP demonstrativo de uma plataforma para lava a jato inteligente, automatizado e
 
 O projeto foi criado para apresentação comercial. Todas as integrações externas são simuladas, sem hardware real, sem pagamentos reais e sem dependência de backend.
 
+## Desenvolvedor
+
+Projeto desenvolvido por [Ricardo Lacerda Pereira](https://www.linkedin.com/in/ricardo-lacerda-pereira/).
+
 ## Estado Atual
 
 - Tela demonstrativa pública para interessados.
