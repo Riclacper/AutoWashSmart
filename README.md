@@ -1,5 +1,7 @@
 # AutoWash Smart — MVP demonstrativo v0.1
 
+[Ver demonstração online](https://auto-wash-smart.vercel.app)
+
 MVP demonstrativo de uma plataforma para lava a jato inteligente, automatizado e escalável.
 
 O projeto foi criado para apresentação comercial. Todas as integrações externas são simuladas, sem hardware real, sem pagamentos reais e sem dependência de backend.
