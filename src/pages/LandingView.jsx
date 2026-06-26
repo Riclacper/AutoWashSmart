@@ -34,10 +34,10 @@ const benefits = [
 ];
 
 const demoFlow = [
-  ['01', 'Cliente identificado', 'Use a placa AWS2026 ou simule QR/facial no totem.'],
-  ['02', 'Serviço liberado', 'Escolha Express, Premium ou SUV Care e acompanhe as etapas.'],
-  ['03', 'Pagamento simulado', 'A lavagem concluída entra automaticamente no painel.'],
-  ['04', 'Gestão operacional', 'Revise receita, vendas, clientes e atividades recentes.'],
+  ['01', 'Identificação', 'Placa, QR Code ou facial simulado.', ScanFace],
+  ['02', 'Liberação', 'Serviço escolhido e entrada autorizada.', Waves],
+  ['03', 'Cobrança', 'Pagamento aprovado automaticamente.', CreditCard],
+  ['04', 'Gestão', 'Indicadores atualizados no dashboard.', BarChart3],
 ];
 
 export function LandingView() {
@@ -121,15 +121,20 @@ export function LandingView() {
 
       <section className="landing-section">
         <div className="section-intro">
-          <span className="eyebrow">Roteiro sugerido</span>
-          <h2>Como apresentar em poucos minutos</h2>
+          <span className="eyebrow">Fluxo visual da demonstração</span>
+          <h2>Da entrada ao dashboard</h2>
         </div>
         <div className="landing-flow">
-          {demoFlow.map(([number, title, text]) => (
-            <article key={title}>
-              <span>{number}</span>
-              <h3>{title}</h3>
-              <p>{text}</p>
+          {demoFlow.map(([number, title, text, Icon]) => (
+            <article className="flow-step" key={title}>
+              <span className="flow-number">{number}</span>
+              <span className="flow-icon">
+                <Icon size={24} />
+              </span>
+              <div>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </div>
             </article>
           ))}
         </div>

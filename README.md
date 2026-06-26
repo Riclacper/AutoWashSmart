@@ -1,4 +1,4 @@
-# AutoWash Smart
+# AutoWash Smart — MVP demonstrativo v0.1
 
 MVP demonstrativo de uma plataforma para lava a jato inteligente, automatizado e escalável.
 
@@ -19,7 +19,7 @@ O projeto foi criado para apresentação comercial. Todas as integrações exter
 - Mensagens de confirmação e erro nos fluxos principais.
 - Testes unitários para validadores e regras operacionais.
 - Dados demo restauráveis no painel administrativo.
-- Repositório GitHub privado: `Riclacper/AutoWashSmart`.
+- Repositório GitHub: `Riclacper/AutoWashSmart`.
 
 ## Stack
 
@@ -169,17 +169,54 @@ tests/
 - Refinamento visual do roteiro sugerido e CTA da landing demonstrativa.
 - Ajuste responsivo do menu da plataforma em smartphones.
 
-## Próxima Etapa
+## Roadmap de evolução
 
-A Fase 2 transformará o protótipo local em uma aplicação conectada:
+O AutoWash Smart está sendo desenvolvido de forma incremental. A versão atual representa um MVP demonstrativo para apresentação comercial e validação da proposta.
 
-- banco Supabase;
-- autenticação real;
-- separação efetiva entre cliente e administrador;
-- persistência remota;
-- histórico individual completo;
-- estoque do mini shop;
-- cadastro de caixas e boxes self-service.
+### Fase 1 — MVP demonstrativo
+
+- [x] Vincular lavagem ao cliente e ao veículo.
+- [x] Impedir lavagem sem identificação.
+- [x] Registrar o uso do self-service.
+- [x] Validar CPF/CNPJ, telefone, e-mail e placa.
+- [x] Impedir cadastros duplicados.
+- [x] Permitir vários veículos por cliente.
+- [x] Melhorar a simulação de QR Code e reconhecimento facial.
+- [x] Adicionar mensagens de erro e confirmação.
+- [x] Criar testes básicos.
+- [x] Adicionar ESLint e Prettier.
+
+A Fase 1 utiliza dados demonstrativos e persistência local no navegador. Não existem pagamentos, reconhecimento biométrico ou equipamentos físicos integrados.
+
+### Fase 2 — Protótipo conectado
+
+- [ ] Criar banco de dados no Supabase.
+- [ ] Implementar autenticação.
+- [ ] Separar efetivamente os acessos de cliente e administrador.
+- [ ] Persistir clientes, veículos, lavagens e vendas.
+- [ ] Criar histórico individual do cliente e dos veículos.
+- [ ] Atualizar o dashboard com dados reais do banco.
+- [ ] Implementar controle de estoque do mini shop.
+- [ ] Registrar caixas, equipamentos e boxes self-service.
+- [ ] Implementar regras de acesso e segurança dos dados.
+- [ ] Preparar políticas de privacidade e adequação à LGPD.
+
+### Fase 3 — Integrações operacionais reais
+
+- [ ] Integrar leitura automática de placas.
+- [ ] Gerar QR Code individual por cliente ou veículo.
+- [ ] Integrar reconhecimento facial com consentimento e proteção de dados.
+- [ ] Integrar gateway de pagamento.
+- [ ] Integrar controle da esteira de lavagem.
+- [ ] Integrar sensores de entrada e saída.
+- [ ] Monitorar disponibilidade e falhas dos equipamentos.
+- [ ] Gerar notas fiscais, recibos e comprovantes.
+- [ ] Criar aplicativo ou PWA para o cliente.
+- [ ] Implementar notificações e acompanhamento da lavagem.
+
+## Estado do projeto
+
+A versão atual é um protótipo demonstrativo. As funcionalidades relacionadas a hardware, pagamentos, biometria e automação física são simuladas e não devem ser utilizadas em uma operação real sem a implementação das fases seguintes.
 
 ## Diretriz de Manutenção
 

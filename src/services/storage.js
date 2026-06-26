@@ -194,7 +194,9 @@ function migratePayments(payments, operations) {
         (isRealTimestamp ? new Date(createdAt).toLocaleDateString('pt-BR') : 'Dados demo'),
       time: payment.time || payment.paymentTime || operationPaymentTime(payment),
       day: payment.day || weekDays[new Date(createdAt).getDay()],
-      status: hasExplicitPayments ? payment.status || payment.paymentStatus || 'Aprovado' : 'Aprovado',
+      status: hasExplicitPayments
+        ? payment.status || payment.paymentStatus || 'Aprovado'
+        : 'Aprovado',
       createdAt,
     };
   });
